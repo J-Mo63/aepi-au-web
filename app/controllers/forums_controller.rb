@@ -1,7 +1,7 @@
 class ForumsController < ApplicationController
 
     def index
-        @forums = Forum.all
+        @forums = policy_scope(Forum)
     end
 
     def show
@@ -11,5 +11,6 @@ class ForumsController < ApplicationController
     end
 
     def new
+        @forum = authorize Forum.new
     end
 end

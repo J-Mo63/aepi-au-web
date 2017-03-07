@@ -3,11 +3,16 @@
         .row
             h1 Add New Forum
         br
-        = render "forums/shared/form_head"
+        .row
+            = link_to "Back", :back, class: "btn btn-default pull-left"
+            br
+            br
+            hr
+        br
         
-        / = simple_form_for @forum do |form|
-        /     = form.input :name
-        /     = form.input :description
-        /     = form.button :submit
-        
-        = render "forums/shared/form_foot"
+        = simple_form_for @forum do |form|
+            = form.input :name
+            = form.input :description
+            = form.button :submit, class: "btn btn-success pull-right"
+
+        br

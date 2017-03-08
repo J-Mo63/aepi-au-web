@@ -1,16 +1,17 @@
 .top-pad
     .container
         .row
-            h1 Add New Forum
+            h1 Edit Forum
         br
         .row
             = link_to "Back", :back, class: "btn btn-default pull-left"
+            = link_to "Delete Forum", forum_path(@forum), method: :delete, class: "btn btn-danger pull-right"
             br
             br
             hr
         br
         
-        = simple_form_for @forum, url: forum_index_path do |form|
+        = simple_form_for @forum, url: forum_path(@forum), method: :put do |form|
             = form.input :name
             = form.input :description
             = form.button :submit, class: "btn btn-success pull-right"

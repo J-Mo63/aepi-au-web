@@ -20,13 +20,26 @@ class ForumsController < ApplicationController
         end
     end
 
+    def edit
+        @forum = Forum.find(params[:id])
+        authorize @forum
+    end
 
+    def update
+        @forum = Forum.find(params[:id])
+        authorize @forum
+
+        if @forum.update_attributes(forum_params)
+            redirect_to :action => 'index'
+        else
+            render :action => 'edit'
+        end
+    end
 
     def show
     end
 
-    def edit
-    end
+
 
     private
 

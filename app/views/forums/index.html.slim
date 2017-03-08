@@ -2,7 +2,7 @@
     .container
         .row
             h1 Forums
-            = link_to "Add Forum", forums_new_path, class: "btn btn-success pull-right"
+            = link_to "Add Forum", new_forum_path, class: "btn btn-success pull-right"
         br
         
         hr
@@ -16,6 +16,6 @@
                             br
                             p = forum.description
                             p
-                                = link_to "View", forums_show_path, class: "btn btn-primary"
-                                |  
-                                a.btn.btn-default href="#" role="button" Edit
+                                = link_to "View", forum_path(forum), class: "btn btn-primary"
+                                '
+                                = link_to "Edit", edit_forum_path(forum), class: "btn btn-default"

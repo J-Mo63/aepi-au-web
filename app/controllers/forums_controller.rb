@@ -39,6 +39,13 @@ class ForumsController < ApplicationController
     def show
     end
 
+    def destroy
+        @forum = Forum.find(params[:id])
+        @forum.destroy
+
+        redirect_to :action => 'index'
+    end
+
 
 
     private

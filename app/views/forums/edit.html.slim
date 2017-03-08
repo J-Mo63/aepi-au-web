@@ -5,7 +5,7 @@
         br
         .row
             = link_to "Back", :back, class: "btn btn-default pull-left"
-            = link_to "Delete Forum", forum_path(@forum), method: :delete, class: "btn btn-danger pull-right"
+            = button_to "Delete Forum", forum_path(@forum), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
             br
             br
             hr

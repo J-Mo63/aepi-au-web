@@ -37,20 +37,22 @@ class ForumsController < ApplicationController
     end
 
     def show
+        @forum = Forum.find(params[:id])
+        @boards = Board.where(forum_id: @forum.id)
     end
 
     def destroy
         @forum = Forum.find(params[:id])
         @forum.destroy
 
-        redirect_to :action => 'index'
+        redirect_to action: 'index'
     end
 
 
 
     private
 
-    def forum_params
-      params.require(:forum).permit(:name, :description)
-    end
+        def forum_params
+          params.require(:forum).permit(:name, :description)
+        end
 end

@@ -2,10 +2,11 @@
     .container
         .row
             h1 Forums
+            
+            hr
+            
             = link_to "Add Forum", new_forum_path, class: "btn btn-success pull-right"
         br
-        
-        hr
         
         .row
             - @forums.each do |forum|
@@ -19,3 +20,5 @@
                                 = link_to "View", forum_path(forum), class: "btn btn-primary"
                                 '
                                 = link_to "Edit", edit_forum_path(forum), class: "btn btn-default"
+            - if @forums.count == 0
+                h4.text-center no forums to display

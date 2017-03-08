@@ -1,0 +1,19 @@
+.top-pad
+    .container
+        .row
+            h1 Add New Board
+        br
+        .row
+            = link_to "Back", :back, class: "btn btn-default pull-left"
+            br
+            br
+            hr
+        br
+        
+        = simple_form_for @board, url: boards_path do |form|
+            = form.hidden_field :forum_id, value: params[:forum]
+            = form.input :name
+            = form.input :description
+            = form.button :submit, class: "btn btn-success pull-right"
+
+        br

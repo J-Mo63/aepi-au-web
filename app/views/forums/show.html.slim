@@ -1,0 +1,19 @@
+.top-pad
+    .container
+        .row
+            h1 = @forum.name
+            
+            hr
+            
+            = link_to "Back", forum_index_path, class: "btn btn-default pull-left"
+            = link_to "Add Board", new_board_path(forum: @forum), class: "btn btn-success pull-right"
+        br
+
+        .row
+            .list-group
+                - @boards.each do |board|
+                    a.list-group-item href="#"
+                        h4.list-group-item-heading = board.name
+                        p.list-group-item-text = board.description
+            - if @boards.count == 0
+                h4.text-center no boards to display

@@ -1,0 +1,23 @@
+.top-pad
+    .container
+        .row
+            h1 
+                = @forum.name
+                '  >
+                = @board.name
+            = link_to "Edit", edit_board_path(@board), class: "btn btn-default pull-right"
+        .row
+            hr
+            
+            = link_to "Back", forum_path(@forum), class: "btn btn-default pull-left"
+            = link_to "Create Post", new_post_path(board: @board), class: "btn btn-success pull-right"
+        br
+
+        .row
+            .list-group
+                - @posts.each do |post|
+                    a.list-group-item href="#{post_path(post.id)}"
+                        h4.list-group-item-heading = post.title
+                        p.list-group-item-text = post.body
+            - if @posts.count == 0
+                h4.text-center no posts to display

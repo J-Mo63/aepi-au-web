@@ -1,3 +1,3 @@
 class Board < ApplicationRecord
-    has_one :forum
+    belongs_to :forum
 end

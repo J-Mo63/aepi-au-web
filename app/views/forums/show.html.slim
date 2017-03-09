@@ -12,7 +12,7 @@
         .row
             .list-group
                 - @boards.each do |board|
-                    a.list-group-item href="#"
+                    a.list-group-item href="#{board_path(board.id)}"
                         h4.list-group-item-heading = board.name
                         p.list-group-item-text = board.description
             - if @boards.count == 0

@@ -1,0 +1,19 @@
+.top-pad
+    .container
+        .row
+            h1 Edit Board
+        br
+        .row
+            = link_to "Back", :back, class: "btn btn-default pull-left"
+            = button_to "Delete Board", board_path(@board), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
+            br
+            br
+            hr
+        br
+        
+        = simple_form_for @board, url: board_path(@board), method: :put do |form|
+            = form.input :name
+            = form.input :description
+            = form.button :submit, class: "btn btn-success pull-right"
+
+        br

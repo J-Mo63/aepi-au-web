@@ -1,0 +1,20 @@
+.top-pad
+    .container
+        .row
+            h1 
+                = @forum.name
+                '  >
+                = @board.name
+                '  >
+                = @post.title
+        .row
+            hr
+            
+            = link_to "Back", forum_path(@forum), class: "btn btn-default pull-left"
+        br
+        
+        .row
+            .well
+                h3.text-center = @post.title
+                .container
+                    p = @post.body

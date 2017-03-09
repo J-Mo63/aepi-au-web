@@ -1,7 +1,9 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: [:show, :edit, :update, :destroy]
 
   def show
+    @board = Board.find(params[:id])
+    @posts = Post.where(board_id: @board.id)
+    @forum = Forum.find(@board.forum)
   end
 
   def new
@@ -9,36 +11,34 @@ class BoardsController < ApplicationController
   end
 
   def edit
+    @board = Board.find(params[:id])
   end
 
   def create
     @board = Board.new(board_params)
 
     if @board.save
-      redirect_to forum_path(@board.forum_id)
+      redirect_to forum_path(@board.forum)
     else
       render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @board.update(board_params)
-        format.html { redirect_to @board, notice: 'Board was successfully updated.' }
-        format.json { render :show, status: :ok, location: @board }
-      else
-        format.html { render :edit }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
-      end
+    @board = Board.find(params[:id])
+
+    if @board.update(board_params)
+      redirect_to @board
+    else
+      render :edit
     end
   end
 
   def destroy
+    @board = Board.find(params[:id])
+    forum = @board.forum
     @board.destroy
-    respond_to do |format|
-      format.html { redirect_to boards_url, notice: 'Board was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to forum_path(forum)
   end
 
   private

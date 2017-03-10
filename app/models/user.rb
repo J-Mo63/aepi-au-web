@@ -7,4 +7,8 @@ class User < ApplicationRecord
   def admin?
     return admin
   end
+
+  def owner_admin?(content)
+    return (admin || content.creator_id == id)
+  end
 end

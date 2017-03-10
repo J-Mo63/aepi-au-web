@@ -8,14 +8,17 @@ class BoardsController < ApplicationController
 
   def new
     @board = Board.new
+    authorize @board
   end
 
   def edit
     @board = Board.find(params[:id])
+    authorize @board
   end
 
   def create
     @board = Board.new(board_params)
+    authorize @board
 
     if @board.save
       redirect_to forum_path(@board.forum)
@@ -26,6 +29,7 @@ class BoardsController < ApplicationController
 
   def update
     @board = Board.find(params[:id])
+    authorize @board
 
     if @board.update(board_params)
       redirect_to @board
@@ -36,6 +40,7 @@ class BoardsController < ApplicationController
 
   def destroy
     @board = Board.find(params[:id])
+    authorize @board
     forum = @board.forum
     @board.destroy
     redirect_to forum_path(forum)

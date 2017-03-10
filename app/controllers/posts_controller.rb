@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    authorize @post
   end
 
   def create
@@ -28,6 +29,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    authorize @post
 
     if @post.update(post_params)
       redirect_to @post
@@ -38,6 +40,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    authorize @post
     board = @post.board
     @post.destroy
     redirect_to board_path(board)

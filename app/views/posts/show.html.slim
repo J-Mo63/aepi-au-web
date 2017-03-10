@@ -15,7 +15,7 @@
         
         .row
             = link_to "Edit", edit_post_path(@post), class: "btn btn-link pull-right"
-            h3.text-center = "#{@post.title} by"
+            h3.text-center = "#{@post.title} by #{@post.creator.username}"
             .container
                 p = @post.body
             hr

@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
+    authorize @comment
   end
 
   def create
@@ -20,6 +21,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    authorize @comment
 
     if @comment.update(comment_params)
       redirect_to @comment.post
@@ -30,6 +32,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    authorize @comment
     post = @comment.post
     @comment.destroy
     redirect_to post_path(post)

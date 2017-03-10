@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309065135) do
+ActiveRecord::Schema.define(version: 20170310013504) do
 
   create_table "boards", force: :cascade do |t|
     t.integer  "forum_id"
@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 20170309065135) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "post_id"
+    t.string   "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "forums", force: :cascade do |t|

@@ -18,3 +18,20 @@
             h3.text-center = @post.title
             .container
                 p = @post.body
+            hr
+        .row
+            b Comments
+            br
+            br
+            - @comments.each do |comment|
+                .well
+                    = button_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
+                    = link_to "Edit", edit_comment_path(comment), class: "btn btn-link pull-right"
+                    p = comment.body
+            - if @comments.count == 0
+                h5.text-center no comments
+        .row
+            = simple_form_for @comment, url: comments_path do |form|
+                = form.hidden_field :post_id, value: params[:id]
+                = form.input :body
+                = form.button :submit, class: "btn btn-success pull-right"

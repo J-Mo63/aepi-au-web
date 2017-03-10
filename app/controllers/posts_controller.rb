@@ -4,6 +4,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @board = @post.board
     @forum = @board.forum
+    @comments = Comment.where(post_id: @post.id)
+    @comment = Comment.new
   end
 
   def new
@@ -46,4 +48,5 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:board_id, :title, :body)
     end
+    
 end

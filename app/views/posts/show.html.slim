@@ -10,11 +10,11 @@
         .row
             hr
             
-            = link_to "Back", forum_path(@forum), class: "btn btn-default pull-left"
+            = link_to "Back", board_path(@board), class: "btn btn-default pull-left"
         br
         
         .row
-            .well
-                h3.text-center = @post.title
-                .container
-                    p = @post.body
+            = link_to "Edit", edit_post_path(@post), class: "btn btn-link pull-right"
+            h3.text-center = @post.title
+            .container
+                p = @post.body

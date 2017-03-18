@@ -1,0 +1,18 @@
+.top-pad
+    .container
+        .row
+            h1 Add New Job Listing
+        br
+        .row
+            = link_to "Back", :back, class: "btn btn-default pull-left"
+            br
+            br
+            hr
+        br
+        
+        = simple_form_for @job, url: jobs_path do |form|
+            = form.input :title
+            = form.input :description
+            = form.button :submit, class: "btn btn-success pull-right"
+
+        br

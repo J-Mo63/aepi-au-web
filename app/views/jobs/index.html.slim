@@ -1,0 +1,16 @@
+.container
+        .row
+            h1 Jobs
+            
+            hr
+            
+            = link_to "Add Job", new_job_path, class: "btn btn-success pull-right"
+        br
+
+        .row
+            - @jobs.each do |job|
+                .well
+                        h3.text-center = job.title
+                        h4 = job.description
+            - if @jobs.count == 0
+                h4.text-center no jobs to display

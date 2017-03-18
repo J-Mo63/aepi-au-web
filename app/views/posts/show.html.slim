@@ -13,10 +13,11 @@
             = link_to "Back", board_path(@board), class: "btn btn-default pull-left"
             = link_to "Edit", edit_post_path(@post), class: "btn btn-link pull-right"
         br
-        h3 = "#{@post.title}"
-        h5 = "posted by #{@post.creator.username} on #{@post.created_at.strftime("%d %b %Y at %l:%M%P")}"
-        br
-        h4 = @post.body
+        .row
+            h3 = "#{@post.title}"
+            h5 = "posted by #{@post.creator.username} on #{@post.created_at.strftime("%d %b %Y at %l:%M%P")}"
+            br
+            h4 = @post.body
         hr
         .row
             b = pluralize(@comments.count, 'comment')

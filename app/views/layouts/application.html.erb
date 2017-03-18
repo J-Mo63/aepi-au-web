@@ -27,8 +27,12 @@
                 <%= nav_link 'Forums', forum_index_path %>
                 <%= nav_link 'Jobs', jobs_path %>
             <% else %>
-                <%= nav_link 'Forums', new_user_session_path %>
-                <%= nav_link 'Jobs', new_user_session_path %>
+                <li>
+                    <%= link_to 'Forums', new_user_session_path %>
+                </li>
+                <li>
+                    <%= link_to 'Jobs', new_user_session_path %>
+                </li>
             <% end %>
           </ul>
           <% if user_signed_in? %>

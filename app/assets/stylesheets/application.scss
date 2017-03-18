@@ -2,10 +2,53 @@
 @import "bootstrap";
 
 .top-pad {
-    margin-top: 5em;
+    margin-top: 3em;
+}
+
+.bonus-pad {
+    height: 0.7em;
 }
 
 .squish {
     width: 30%;
     margin-left: 35%;
+}
+
+.navbar-inverse {
+    background-color: #285aa3;
+    border-color: #1C3D70;
+
+    .navbar-brand {
+        color: white;
+        img {
+            height: 40px;
+            margin-top: -10px;
+        }
+    }
+}
+
+ul  {
+    li {
+        a {
+            color: white !important;
+        }
+    }
+    li.active {
+        a {
+            background-color: #1C3D70 !important;
+            color: #eacf48 !important;
+        }
+    }
+}
+
+.blue {
+    background-color: #285aa3 !important;
+}
+
+.gold-text {
+    color: #eacf48 !important;
+}
+
+.white-text {
+    color: white !important;
 }

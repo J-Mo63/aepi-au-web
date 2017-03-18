@@ -3,24 +3,23 @@
         .row
             h1 
                 = @forum.name
-                '  >
+                '  /
                 = @board.name
-                '  >
+                '  /
                 = @post.title
         .row
             hr
             
             = link_to "Back", board_path(@board), class: "btn btn-default pull-left"
-        br
-        
-        .row
             = link_to "Edit", edit_post_path(@post), class: "btn btn-link pull-right"
-            h3.text-center = "#{@post.title} by #{@post.creator.username}"
-            .container
-                p = @post.body
-            hr
+        br
+        h3 = "#{@post.title}"
+        h5 = "posted by #{@post.creator.username} on #{@post.created_at.strftime("%d %b %Y at %l:%M%P")}"
+        br
+        h4 = @post.body
+        hr
         .row
-            b Comments
+            b = pluralize(@comments.count, 'comment')
             br
             br
             - @comments.each do |comment|
@@ -28,8 +27,8 @@
                     = button_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
                     = link_to "Edit", edit_comment_path(comment), class: "btn btn-link pull-right"
                     p 
+                        b = "#{comment.creator.username}: "
                         = comment.body
-                        = " - #{comment.creator.username}"
             - if @comments.count == 0
                 h5.text-center no comments
         .row

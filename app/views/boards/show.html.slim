@@ -18,6 +18,6 @@
                 - @posts.each do |post|
                     a.list-group-item href="#{post_path(post.id)}"
                         h4.list-group-item-heading = post.title
-                        p.list-group-item-text = post.body
+                        p.list-group-item-text = truncate(post.body, :length => 170)
             - if @posts.count == 0
                 h4.text-center no posts to display

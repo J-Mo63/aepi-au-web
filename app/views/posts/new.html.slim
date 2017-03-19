@@ -14,7 +14,7 @@
             = form.hidden_field :board_id, value: params[:board]
             = form.hidden_field :creator_id, value: current_user.id
             = form.input :title
-            = form.input :body
+            = form.input :body, as: :text
             = form.button :submit, class: "btn btn-success pull-right"
 
         br

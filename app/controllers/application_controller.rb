@@ -23,4 +23,12 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
     end
+
+    def authenticate_user!
+      if user_signed_in?
+        super
+      else
+        redirect_to new_user_session_path, :notice => 'You must be logged in to view this content'
+    end
+  end
 end

@@ -13,7 +13,7 @@
         
         = simple_form_for @post, url: post_path(@post), method: :put do |form|
             = form.input :title
-            = form.input :body
+            = form.input :body, as: :text
             = form.button :submit, class: "btn btn-success pull-right"
 
         br

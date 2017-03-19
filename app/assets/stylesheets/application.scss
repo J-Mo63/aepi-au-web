@@ -5,6 +5,18 @@
     margin-top: 3em;
 }
 
+.non-bold {
+    font-weight: normal;
+}
+
+.panel-pi {
+    border-color: #285aa3;
+    .panel-heading {
+        background-color: #285aa3;
+        color: white;
+    }
+}
+
 .bonus-pad {
     height: 0.7em;
 }

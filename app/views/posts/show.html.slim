@@ -36,5 +36,4 @@
             = simple_form_for @comment, url: comments_path do |form|
                 = form.hidden_field :post_id, value: params[:id]
                 = form.hidden_field :creator_id, value: current_user.id
-                = form.input :body
-                = form.button :submit, class: "btn btn-success pull-right"
+                = form.input :body, class: "form-control", placeholder: "Write a comment...", label: false

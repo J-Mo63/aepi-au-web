@@ -5,7 +5,8 @@
                 = @forum.name
                 '  /
                 = @board.name
-                = link_to "Edit", edit_board_path(@board), class: "btn btn-default pull-right"
+                - if current_user.admin?
+                    = link_to "Edit", edit_board_path(@board), class: "btn btn-default pull-right"
         .row
             hr
             

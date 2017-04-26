@@ -3,6 +3,7 @@ class JobsController < ApplicationController
 
   def index
     @jobs = policy_scope(Job)
+    @jobs = @jobs.order(created_at: :desc)
   end
 
   def show
@@ -14,6 +15,8 @@ class JobsController < ApplicationController
   end
 
   def edit
+    @job = Job.find(params[:id])
+    authorize @job
   end
 
   def create
@@ -28,30 +31,26 @@ class JobsController < ApplicationController
     end
 
   def update
-    respond_to do |format|
-      if @job.update(job_params)
-        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
-        format.json { render :show, status: :ok, location: @job }
-      else
-        format.html { render :edit }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
-      end
+    @job = Job.find(params[:id])
+    authorize @job
+
+    if @job.update(job_params)
+      redirect_to jobs_url
+    else
+      render :edit
     end
   end
 
-  # DELETE /jobs/1
-  # DELETE /jobs/1.json
   def destroy
+    @job = Job.find(params[:id])
+    authorize @job
     @job.destroy
-    respond_to do |format|
-      format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to jobs_url
   end
 
   private
 
     def job_params
-      params.require(:job).permit(:title, :description)
+      params.require(:job).permit(:title, :description, :is_expired)
     end
 end

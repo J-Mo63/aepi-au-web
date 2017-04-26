@@ -1,0 +1,21 @@
+.top-pad
+    .container
+        .row
+            h1 Edit Job
+        br
+        .row
+            = link_to "Back", :back, class: "btn btn-default pull-left"
+            = button_to "Delete Job", job_path(@job), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
+            br
+            br
+            hr
+        br
+        
+        = simple_form_for @job, url: job_path(@job), method: :put do |form|
+            = form.input :title
+            = form.input :description
+            = form.check_box :is_expired
+            b  tick this box if the offer has expired
+            = form.button :submit, class: "btn btn-success pull-right"
+
+        br

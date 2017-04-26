@@ -3,6 +3,7 @@ class BoardsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     @posts = Post.where(board_id: @board.id)
+    @posts = @posts.order(created_at: :desc)
     @forum = Forum.find(@board.forum)
   end
 

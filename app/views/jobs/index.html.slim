@@ -3,14 +3,36 @@
         h1 Jobs
         
         hr
-        
-        = link_to "Add Job", new_job_path, class: "btn btn-success pull-right"
+        - if current_user.admin?
+            = link_to "Add Job", new_job_path, class: "btn btn-success pull-right"
     br
 
     .row
         - @jobs.each do |job|
             .panel.panel-pi
-                .panel-heading = job.title
-                .panel-body = job.description
+                .panel-heading
+                    h4
+                        - if job.is_expired
+                            span.label.label-default Expired
+                        - else
+                            span.label.label-success Open
+                        '
+                        = job.title
+                .panel-body 
+                    = job.description
+                    - if current_user.admin?
+                        br
+                        br
+                        = link_to "Edit", edit_job_path(job), class: "btn btn-default pull-right"
+                    br
+                    br
+                    span
+                        span.bold
+                            ' Date Posted:
+                        = job.created_at.strftime("%d %b %Y")
+
         - if @jobs.count == 0
             h4.text-center no jobs to display
+    h5.text-center 
+        ' For more information contact our Civics Chair
+        a href="mailto:brockwell.daniel@gmail.com?subject=AEPi%20Jobs%20Board%20Query%20for%20#{current_user.username}" here

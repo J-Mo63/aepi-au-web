@@ -1,24 +1,25 @@
-.top-pad
-    .container
-        .row
-            h1 Forums
-            
-            hr
-            
-            = link_to "Add Forum", new_forum_path, class: "btn btn-success pull-right"
-        br
+.container
+    .row
+        h1 Forums
         
-        .row
-            - @forums.each do |forum|
-                .col-sm-6.col-md-4
-                    .thumbnail
-                        .caption
-                            h3 = forum.name
-                            br
-                            p = forum.description
-                            p
-                                = link_to "View", forum_path(forum), class: "btn btn-primary"
+        hr
+        - if current_user.admin?
+            = link_to "Add Forum", new_forum_path, class: "btn btn-success pull-right"
+    br
+    
+    .row
+        - @forums.each do |forum|
+            .col-sm-6.col-md-4
+                .thumbnail
+                    .caption
+                        h3 = forum.name
+                        br
+                        p = forum.description
+                        br
+                        p
+                            = link_to "View", forum_path(forum), class: "btn btn-primary"
+                            - if current_user.admin?
                                 '
                                 = link_to "Edit", edit_forum_path(forum), class: "btn btn-default"
-            - if @forums.count == 0
-                h4.text-center no forums to display
+        - if @forums.count == 0
+            h4.text-center no forums to display

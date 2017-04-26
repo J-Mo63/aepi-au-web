@@ -6,12 +6,13 @@
                 '  /
                 = @board.name
                 '  /
-                = @post.title
+                = truncate(@post.title, :length => 25)
         .row
             hr
             
             = link_to "Back", board_path(@board), class: "btn btn-default pull-left"
-            = link_to "Edit", edit_post_path(@post), class: "btn btn-link pull-right"
+            - if current_user.owner_admin?(@post)
+                = link_to "Edit", edit_post_path(@post), class: "btn btn-link pull-right"
         br
         .row
             h2 = "#{@post.title}"
@@ -25,8 +26,9 @@
             br
             - @comments.each do |comment|
                 .well.well-sm
-                    = button_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
-                    = link_to "Edit", edit_comment_path(comment), class: "btn btn-link pull-right"
+                    - if current_user.owner_admin?(@post)
+                        = button_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
+                        = link_to "Edit", edit_comment_path(comment), class: "btn btn-link pull-right"
                     p 
                         b = "#{comment.creator.username}: "
                         = comment.body

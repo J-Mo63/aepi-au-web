@@ -40,6 +40,7 @@ class ForumsController < ApplicationController
     def show
         @forum = Forum.find(params[:id])
         @boards = Board.where(forum_id: @forum.id)
+        @boards = @boards.order(:name)
     end
 
     def destroy

@@ -11,18 +11,18 @@ class UserPolicy < ApplicationPolicy
   end
 
   def new?
-    if user.present?
-      user.admin?
-    else
-      false
-    end
+    # if user.present?
+    #   user.admin?
+    # else
+    #   false
+    # end
   end
 
   def create?
-    if user.present?
-      user.admin?
-    else
-      false
-    end
+    # if user.present?
+    #   user.admin?
+    # else
+    #   false
+    # end
   end
 end

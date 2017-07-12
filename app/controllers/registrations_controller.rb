@@ -2,12 +2,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    authorize @user
   end
 
   def new
     super
-    authorize @user
   end
 
   private

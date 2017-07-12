@@ -1,0 +1,21 @@
+.top-pad
+    .container
+        .row
+        	h1 All Posts
+        hr
+
+        = link_to "Back", forums_academics_path, class: "btn btn-default pull-left"
+        br
+        br
+        br
+        .row
+            .list-group
+                - @posts.each do |post|
+                    a.list-group-item href="#{post_path(post.id)}"
+                    	h4
+                    		span.label.label-primary.pull-right = post.board.name
+                        h4.list-group-item-heading = post.title
+                        p.list-group-item-text = truncate(post.body, :length => 170)
+            - if @posts.count == 0
+                h4.text-center there are no posts to display
+        br

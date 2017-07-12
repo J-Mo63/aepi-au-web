@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :comments
   resources :posts
   resources :boards
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => "registrations"
+  }
+
+	get 'forums/academics', to: 'forums#academics'
 
   resources :forums, as: :forum
 

@@ -50,7 +50,11 @@ class ForumsController < ApplicationController
         redirect_to action: 'index'
     end
 
-
+    def academics
+    	@posts = Post.last(10).reverse
+    	@boards = Board.all
+    	@boards = @boards.order(:name)
+    end
 
     private
 

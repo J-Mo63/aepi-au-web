@@ -11,7 +11,10 @@
         br
         
         = simple_form_for @post, url: posts_path do |form|
-            = form.hidden_field :board_id, value: params[:board]
+            - if params[:board].present?
+                = form.hidden_field :board_id, value: params[:board]
+            - else
+                = form.input :board_id, collection: @boards, label: 'Topic'
             = form.hidden_field :creator_id, value: current_user.id
             = form.input :title
             = form.input :body, as: :text

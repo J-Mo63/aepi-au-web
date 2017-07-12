@@ -4,7 +4,6 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:id])
     @posts = Post.where(board_id: @board.id)
     @posts = @posts.order(created_at: :desc)
-    @forum = Forum.find(@board.forum)
   end
 
   def new
@@ -22,7 +21,7 @@ class BoardsController < ApplicationController
     authorize @board
 
     if @board.save
-      redirect_to forum_path(@board.forum)
+      redirect_to forums_academics_path
     else
       render :new
     end
@@ -42,14 +41,13 @@ class BoardsController < ApplicationController
   def destroy
     @board = Board.find(params[:id])
     authorize @board
-    forum = @board.forum
     @board.destroy
-    redirect_to forum_path(forum)
+    redirect_to forums_academics_path
   end
 
   private
 
   def board_params
-    params.require(:board).permit(:forum_id, :name, :description)
+    params.require(:board).permit(:name, :description)
   end
 end

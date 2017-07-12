@@ -1,16 +1,14 @@
 .top-pad
     .container
         .row
-            h1 
-                = @forum.name
-                '  /
+            h1
                 = @board.name
                 - if current_user.admin?
                     = link_to "Edit", edit_board_path(@board), class: "btn btn-default pull-right"
         .row
             hr
             
-            = link_to "Back", forum_path(@forum), class: "btn btn-default pull-left"
+            = link_to "Back", forums_academics_path, class: "btn btn-default pull-left"
             = link_to "Create Post", new_post_path(board: @board), class: "btn btn-success pull-right"
         br
 

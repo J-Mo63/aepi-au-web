@@ -1,15 +1,20 @@
 class PostsController < ApplicationController
 
+	def index
+    @posts = policy_scope(Post)
+    @posts = @posts.order(:created_at).reverse
+  end
+
   def show
     @post = Post.find(params[:id])
     @board = @post.board
-    @forum = @board.forum
     @comments = Comment.where(post_id: @post.id)
     @comment = Comment.new
   end
 
   def new
     @post = Post.new
+    @boards = Board.all
   end
 
   def edit
@@ -21,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to post_path(@post.id)
+      redirect_to forums_academics_path
     else
       render :new
     end

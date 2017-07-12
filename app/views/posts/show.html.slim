@@ -1,16 +1,11 @@
 .top-pad
     .container
         .row
-            h1 
-                = @forum.name
-                '  /
-                = @board.name
-                '  /
-                = truncate(@post.title, :length => 25)
+            h1 = "Post by #{@post.creator.username} on #{@board.name}"
         .row
             hr
             
-            = link_to "Back", board_path(@board), class: "btn btn-default pull-left"
+            = link_to "Back", :back, class: "btn btn-default pull-left"
             - if current_user.owner_admin?(@post)
                 = link_to "Edit", edit_post_path(@post), class: "btn btn-link pull-right"
         br
@@ -26,7 +21,7 @@
             br
             - @comments.each do |comment|
                 .well.well-sm
-                    - if current_user.owner_admin?(@post)
+                    - if current_user.owner_admin?(comment)
                         = button_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
                         = link_to "Edit", edit_comment_path(comment), class: "btn btn-link pull-right"
                     p 

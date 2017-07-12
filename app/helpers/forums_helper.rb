@@ -1,8 +1,6 @@
 module ForumsHelper
 
-	def colour_board_badge(post)
-		if post.board.name == "New Board"
-			"hello"
-  	end
+	def get_board_colour_hex(board)
+		tag_colour = board.colour.present? ? board.colour : '#000000'
   end
 end

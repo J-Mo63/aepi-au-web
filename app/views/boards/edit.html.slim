@@ -14,6 +14,7 @@
         = simple_form_for @board, url: board_path(@board), method: :put do |form|
             = form.input :name
             = form.input :description
+            = form.input :colour
             = form.button :submit, class: "btn btn-success pull-right"
 
         br

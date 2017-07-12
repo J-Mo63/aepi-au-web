@@ -13,7 +13,7 @@
                 - @posts.each do |post|
                     a.list-group-item href="#{post_path(post.id)}"
                     	h4
-                    		span.label.label-primary.pull-right = post.board.name
+                    		span.label.pull-right style="background-color: #{get_board_colour_hex(post.board)};" = post.board.name
                         h4.list-group-item-heading = post.title
                         p.list-group-item-text = truncate(post.body, :length => 170)
             - if @posts.count == 0

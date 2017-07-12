@@ -51,7 +51,7 @@ class ForumsController < ApplicationController
     end
 
     def academics
-    	@posts = Post.last(10).reverse
+    	@posts = Post.last(5).reverse
     	@boards = Board.all
     	@boards = @boards.order(:name)
     end

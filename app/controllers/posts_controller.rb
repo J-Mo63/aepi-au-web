@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to forums_academics_path
+      redirect_to post_path(@post)
     else
       render :new
     end

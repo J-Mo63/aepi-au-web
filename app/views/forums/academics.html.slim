@@ -17,8 +17,9 @@
                         p.list-group-item-text = truncate(post.body, :length => 170)
             - if @posts.count == 0
                 h4.text-center no recent posts
-            a href="#{posts_path}"
-            	h4.text-center view all posts
+            - elsif @posts.count < Post.all.count
+                a href="#{posts_path}"
+                	h4.text-center view all posts
         br
         hr
         - if current_user.admin?

@@ -2,6 +2,10 @@ module ApplicationHelper
    def nav_link(link_text, page)
       class_name = current_page?(page) ? 'active' : ''
 
+      if (controller_name == 'boards' || controller_name == 'posts') && link_text == 'Forum'
+      	class_name = 'active'
+      end
+
       content_tag(:li, :class => class_name) do
          link_to link_text, page
       end

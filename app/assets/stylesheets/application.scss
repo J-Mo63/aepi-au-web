@@ -61,6 +61,11 @@ ul  {
     background-color: #285aa3 !important;
 }
 
+.blue-hover:hover {
+    background-color: #2b60ad !important;
+    text-decoration: none;
+}
+
 .gold-text {
     color: #eacf48 !important;
 }
@@ -71,4 +76,8 @@ ul  {
 
 .pad-right {
     margin-right: 10px;
+}
+
+.reduced-top-margin {
+    margin-top: 0px;
 }

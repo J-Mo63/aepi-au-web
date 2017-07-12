@@ -4,7 +4,7 @@
         	h1 Academics Forum
         hr
 
-        = link_to "Create Post", new_post_path(board: @board), class: "btn btn-success pull-right"
+        = link_to "New Post", new_post_path(board: @board), class: "btn btn-success pull-right"
         h3 Latest Posts
         br
         .row
@@ -28,8 +28,7 @@
         .row
         	- @boards.each do |board|
         		.col-md-3
-					a.thumbnail.pad-right href="#{board_path(board.id)}"
+					a.thumbnail.blue.blue-hover.pad-right href="#{board_path(board.id)}"
 					    .caption
-					    	h3 = board.name
-					        = board.description
-					        br
+					    	h3.reduced-top-margin.white-text = board.name
+					        .white-text.no-deco = board.description

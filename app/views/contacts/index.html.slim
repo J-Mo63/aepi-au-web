@@ -13,9 +13,9 @@
         .col-md-4
             .btn-toolbar
                 .btn-group.btn-group-md
-                    = link_to 'Brother List', root_path, class: 'btn btn-default'
-                    = link_to 'Rush List', root_path, class: 'btn btn-default'
-                    = link_to 'Pledge List', root_path, class: 'btn btn-default'
+                    = link_to 'Brother List', "#", class: 'btn btn-default'
+                    = link_to 'Rush List', "#", class: 'btn btn-default'
+                    = link_to 'Pledge List', "#", class: 'btn btn-default'
         br
         br
         br
@@ -28,7 +28,9 @@
         - @contacts.each do |contact|
             .col-sm-6.col-md-4
                 .thumbnail
+                    = link_to "View", contact_path(contact), class: "btn btn-default pull-right"
                     = link_to "Edit", edit_contact_path(contact), class: "btn btn-link pull-right"
+                    br
                     .caption
                         h3 = contact.full_name
                         h4 = uni = contact.uni.present? ? contact.uni.name : "Unknown Uni"
@@ -45,7 +47,8 @@
                         h4 
                             b
                                 ' Status:
-                            span.label.label-primary Brother
+                            span.label.label-lg style="background-color: #{get_state_colour_hex(contact.state)};"
+                                = state_name = contact.state.present? ? contact.state.name : "Unknown State"
         - if @contacts.count == 0
             h4.text-center no contacts to display
 

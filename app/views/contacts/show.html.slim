@@ -1,0 +1,27 @@
+.container
+    .row
+    	br
+    	br
+    	= link_to "Back", contacts_path, class: "btn btn-default pull-left"
+    	= link_to "Edit Contact", edit_contact_path(@contact), class: "btn btn-success pull-right"
+    	br
+    	br
+        h1 
+        	b = "#{@contact.full_name}"
+        h2 = uni = @contact.uni.present? ? @contact.uni.name : "Unknown Uni"
+        h2
+        	span.label.label-lg style="background-color: #{get_state_colour_hex(@contact.state)};"
+                = state_name = @contact.state.present? ? @contact.state.name : "Unknown State"
+        br
+        h4
+        	b
+                ' Mobile:
+            = @contact.mobile
+        h4
+        	b
+                ' Email:
+            = @contact.email
+    .row
+        hr
+        h2 Notes
+        

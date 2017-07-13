@@ -21,6 +21,7 @@ class ContactsController < ApplicationController
   	@contact = Contact.find(params[:id])
     authorize @contact
     @unis = Uni.all
+    @states = State.all
   end
 
   def create
@@ -67,6 +68,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :mobile, :uni_id)
+      params.require(:contact).permit(:first_name, :last_name, :email, :mobile, :uni_id, :state_id)
     end
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :contacts
+  resources :states
+  resources :unis
   resources :jobs
   resources :comments
   resources :posts
@@ -7,6 +8,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     :registrations => "registrations"
   }
+
+  get 'contacts/settings', to: 'contacts#settings'
+  resources :contacts
 
 	get 'forums/academics', to: 'forums#academics'
 

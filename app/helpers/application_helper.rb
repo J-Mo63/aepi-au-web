@@ -4,6 +4,10 @@ module ApplicationHelper
 
       if (controller_name == 'boards' || controller_name == 'posts') && link_text == 'Forum'
       	class_name = 'active'
+      elsif (controller_name == 'jobs') && link_text == 'Jobs'
+      	class_name = 'active'
+      elsif (controller_name == 'contacts') && link_text == 'Database'
+      	class_name = 'active'
       end
 
       content_tag(:li, :class => class_name) do

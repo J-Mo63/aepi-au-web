@@ -2,8 +2,7 @@
     .row
         h1 Database
         - if current_user.admin?
-            = link_to new_contact_path, class: "btn btn-default pull-right" do
-                i.glyphicon.glyphicon-cog.icon-font
+            = link_to "Configure", contacts_settings_path, class: "btn btn-default pull-right"
     .row
         
         hr
@@ -32,7 +31,7 @@
                     = link_to "Edit", edit_contact_path(contact), class: "btn btn-link pull-right"
                     .caption
                         h3 = contact.full_name
-                        h4 = uni = contact.uni != nil && contact.uni != "" ? contact.uni : "Unknown Uni"
+                        h4 = uni = contact.uni.present? ? contact.uni.name : "Unknown Uni"
                         br
                         p
                             b

@@ -14,7 +14,7 @@
         = simple_form_for @contact, url: contact_path(@contact), method: :put do |form|
             = form.input :first_name
             = form.input :last_name
-            = form.input :uni
+            = form.association :uni, collection: @unis, include_blank: "Unknown Uni"
             = form.input :mobile
             = form.input :email
             = form.button :submit, class: "btn btn-success pull-right"

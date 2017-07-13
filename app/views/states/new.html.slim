@@ -1,0 +1,18 @@
+.top-pad
+    .container
+        .row
+            h1 Add New State
+        br
+        .row
+            = link_to "Back", :back, class: "btn btn-default pull-left"
+            br
+            br
+            hr
+        br
+        
+        = simple_form_for @state, url: states_path do |form|
+            = form.input :name
+            = form.input :colour
+            = form.button :submit, class: "btn btn-success pull-right"
+
+        br

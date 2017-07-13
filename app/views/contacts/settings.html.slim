@@ -1,0 +1,46 @@
+.top-pad
+    .container
+        .row
+            h1 Database Settings
+            br
+        .row
+        	= link_to "Back", contacts_path, class: "btn btn-default pull-left"
+        	br
+        	br
+        	hr
+        .row
+        	.col-md-3
+	        	h3 Unis
+	        	= link_to "Add Uni", new_uni_path, class: "btn btn-success pull-right"
+	        	br
+	        	br
+		        .table-responsive
+		            table.table.table-striped
+		                tbody
+		                    - if @unis.count > 0
+		                        - @unis.each do |uni|
+		                            tr
+		                                td = uni.name
+		                                td = uni.city
+		                                td = button_to "Delete", uni_path(uni), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
+		                    - else
+		                        h4.text-center no universities in database
+		    .col-md-4
+	        	h3 States
+	        	= link_to "Add State", new_state_path, class: "btn btn-success pull-right"
+	        	br
+	        	br
+		        .table-responsive
+		            table.table.table-striped
+		                tbody
+		                    - if @states.count > 0
+		                        - @states.each do |state|
+		                            tr
+		                                td
+		                                	h4
+			                                	span.label.label-lg style="background-color: #{get_state_colour_hex(state)};" 
+			                                		= state.name 
+		                                td = button_to "Delete", state_path(state), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
+		                                td = link_to "Edit", edit_state_path(state), class: "btn btn-default pull-right"
+		                    - else
+		                        h4.text-center no states in database

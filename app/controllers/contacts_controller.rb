@@ -2,6 +2,7 @@ class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+
   def index
     @contacts = policy_scope(Contact).search(params[:search])
   end
@@ -13,11 +14,13 @@ class ContactsController < ApplicationController
   def new
     @contact = Contact.new
     authorize @contact
+    @unis = Uni.all
   end
 
   def edit
   	@contact = Contact.find(params[:id])
     authorize @contact
+    @unis = Uni.all
   end
 
   def create
@@ -50,6 +53,12 @@ class ContactsController < ApplicationController
     end
   end
 
+  def settings
+  	authorize Contact
+  	@unis = Uni.all
+  	@states = State.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
@@ -58,6 +67,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :mobile, :uni)
+      params.require(:contact).permit(:first_name, :last_name, :email, :mobile, :uni_id)
     end
 end

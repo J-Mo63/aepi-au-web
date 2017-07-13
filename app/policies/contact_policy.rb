@@ -27,4 +27,8 @@ class ContactPolicy < ApplicationPolicy
 	def update?
 		true
 	end
+
+	def settings?
+		user.admin?
+	end
 end

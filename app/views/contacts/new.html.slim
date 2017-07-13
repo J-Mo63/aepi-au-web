@@ -1,0 +1,21 @@
+.top-pad
+    .container
+        .row
+            h1 Add New Contact
+        br
+        .row
+            = link_to "Back", :back, class: "btn btn-default pull-left"
+            br
+            br
+            hr
+        br
+        
+        = simple_form_for @contact, url: contacts_path do |form|
+            = form.input :first_name
+            = form.input :last_name
+            = form.input :uni
+            = form.input :mobile
+            = form.input :email
+            = form.button :submit, class: "btn btn-success pull-right"
+
+        br

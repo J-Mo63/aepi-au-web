@@ -1,9 +1,10 @@
 class Contact < ApplicationRecord
 
 	belongs_to :uni, optional: true
-	belongs_to :state
+	belongs_to :state, optional: true
 	validates :first_name, :presence => true
 	validates :last_name, :presence => true
+	has_many :notes
 	
 	def full_name
 		"#{first_name} #{last_name}"

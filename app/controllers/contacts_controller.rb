@@ -9,12 +9,15 @@ class ContactsController < ApplicationController
 
   def show
     @contact = Contact.find(params[:id])
+    @notes = Note.where(contact_id: @contact.id)
+    @note = Note.new
   end
 
   def new
     @contact = Contact.new
     authorize @contact
     @unis = Uni.all
+    @states = State.all
   end
 
   def edit

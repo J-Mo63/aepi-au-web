@@ -14,6 +14,7 @@
             = form.input :first_name
             = form.input :last_name
             = form.association :uni, collection: @unis, include_blank: "Unknown Uni"
+            = form.association :state, collection: @states
             = form.input :mobile
             = form.input :email
             = form.button :submit, class: "btn btn-success pull-right"

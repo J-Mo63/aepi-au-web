@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def owner_admin?(content)
     return (admin || content.creator_id == id)
   end
+
+  def owner_admin_for_note?(content)
+    return (admin || content.user_id == id)
+  end
 end

@@ -63,6 +63,14 @@ class ContactsController < ApplicationController
   	@states = State.all
   end
 
+  def brother_list
+  	@contacts = policy_scope(Contact).search(params[:search]).where(is_brother: true)
+  end
+
+  def rush_list
+  	@contacts = policy_scope(Contact).search(params[:search]).where(is_brother: false)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact

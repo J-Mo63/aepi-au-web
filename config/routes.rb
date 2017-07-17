@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   }
 
   get 'contacts/settings', to: 'contacts#settings'
+  get 'contacts/brother_list', to: 'contacts#brother_list'
+  get 'contacts/rush_list', to: 'contacts#rush_list'
   resources :contacts
 
 	get 'forums/academics', to: 'forums#academics'

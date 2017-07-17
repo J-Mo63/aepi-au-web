@@ -1,6 +1,6 @@
 .container
     .row
-        h1 Database
+        h1 Brother List
         - if current_user.admin?
             = link_to "Configure", contacts_settings_path, class: "btn btn-default pull-right"
     .row
@@ -13,8 +13,8 @@
         .col-md-5
             .btn-toolbar
                 .btn-group.btn-group-md
-                    = link_to 'All Contacts', contacts_path, class: 'btn btn-default btn-selected'
-                    = link_to 'Brother List', contacts_brother_list_path, class: 'btn btn-default'
+                    = link_to 'All Contacts', contacts_path, class: 'btn btn-default'
+                    = link_to 'Brother List', contacts_brother_list_path, class: 'btn btn-default btn-selected'
                     = link_to 'Rush List', contacts_rush_list_path, class: 'btn btn-default'
                     = link_to 'Pledge List', "#", class: 'btn btn-default'
         br

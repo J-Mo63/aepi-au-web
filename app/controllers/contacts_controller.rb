@@ -4,7 +4,13 @@ class ContactsController < ApplicationController
 
 
   def index
-    @contacts = policy_scope(Contact).search(params[:search])
+  	if params[:list] == 'brother list'
+  		@contacts = policy_scope(Contact).search(params[:search]).where(is_brother: true)
+  	elsif params[:list] == 'rush list'
+  		@contacts = policy_scope(Contact).search(params[:search]).where(is_brother: false)
+  	else
+    	@contacts = policy_scope(Contact).search(params[:search])
+  	end
   end
 
   def show
@@ -61,14 +67,6 @@ class ContactsController < ApplicationController
   	authorize Contact
   	@unis = Uni.all
   	@states = State.all
-  end
-
-  def brother_list
-  	@contacts = policy_scope(Contact).search(params[:search]).where(is_brother: true)
-  end
-
-  def rush_list
-  	@contacts = policy_scope(Contact).search(params[:search]).where(is_brother: false)
   end
 
   private

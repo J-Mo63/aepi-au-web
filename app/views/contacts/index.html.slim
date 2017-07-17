@@ -13,10 +13,10 @@
         .col-md-5
             .btn-toolbar
                 .btn-group.btn-group-md
-                    = link_to 'All Contacts', contacts_path, class: 'btn btn-default btn-selected'
-                    = link_to 'Brother List', contacts_brother_list_path, class: 'btn btn-default'
-                    = link_to 'Rush List', contacts_rush_list_path, class: 'btn btn-default'
-                    = link_to 'Pledge List', "#", class: 'btn btn-default'
+                    = link_to 'All Contacts', contacts_path, class: "btn btn-default #{get_active_class_for_index}"
+                    = link_to 'Brother List', contacts_path(list: "brother list"), class: "btn btn-default #{get_active_class("brother list")}"
+                    = link_to 'Rush List', contacts_path(list: "rush list"), class: "btn btn-default #{get_active_class("rush list")}"
+                    = link_to 'Pledge List', "#", class: "btn btn-default"
         br
         br
         br

@@ -31,12 +31,4 @@ class ContactPolicy < ApplicationPolicy
 	def settings?
 		user.admin?
 	end
-
-	def brother_list?
-		true
-	end
-
-	def rush_list?
-		true
-	end
 end

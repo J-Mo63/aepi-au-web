@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714004327) do
+ActiveRecord::Schema.define(version: 20170717012352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,10 +36,19 @@ ActiveRecord::Schema.define(version: 20170714004327) do
     t.string   "last_name"
     t.string   "email"
     t.string   "mobile"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "uni_id"
     t.integer  "state_id"
+    t.integer  "added_by"
+    t.string   "high_school"
+    t.string   "degree"
+    t.integer  "priority"
+    t.integer  "high_school_graduation_year"
+    t.integer  "uni_commencement_year"
+    t.integer  "rush_priority"
+    t.boolean  "is_brother",                  default: false
+    t.index ["added_by"], name: "index_contacts_on_added_by", using: :btree
     t.index ["state_id"], name: "index_contacts_on_state_id", using: :btree
     t.index ["uni_id"], name: "index_contacts_on_uni_id", using: :btree
   end

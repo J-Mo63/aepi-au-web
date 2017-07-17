@@ -11,12 +11,23 @@
         br
         
         = simple_form_for @contact, url: contacts_path do |form|
+            - current_year = Time.new.year.to_i
+            - year_collection = (current_year - 20 .. current_year + 1).to_a.reverse
+            = form.hidden_field :added_by, value: current_user.id
             = form.input :first_name
             = form.input :last_name
             = form.association :uni, collection: @unis, include_blank: "Unknown Uni"
-            = form.association :state, collection: @states
+            = form.input :high_school
+            = form.input :high_school_graduation_year, collection: year_collection
+            = form.input :degree
+            = form.input :uni_commencement_year, collection: year_collection
+            = form.association :state, collection: @states, prompt: "Select contact state"
+            - if !@contact.is_brother
+                = form.input :rush_priority, collection: { "1 - High Priority" => 1, "2 - Good Candidate" => 2, "3 - Not Sure" => 3, "4 - Not Interested" => 4}, prompt: "Select RUSH Priority"
             = form.input :mobile
             = form.input :email
             = form.button :submit, class: "btn btn-success pull-right"
-
+            br
+            = form.label "Tick the below box if they are now part of the organisation"
+            = form.input :is_brother
         br

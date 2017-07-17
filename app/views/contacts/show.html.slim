@@ -6,21 +6,53 @@
     	= link_to "Edit Contact", edit_contact_path(@contact), class: "btn btn-success pull-right"
     	br
     	br
-        h1 
-        	b = "#{@contact.full_name}"
-        h2 = uni = @contact.uni.present? ? @contact.uni.name : "Unknown Uni"
-        h2
-        	span.label.label-lg style="background-color: #{get_state_colour_hex(@contact.state)};"
-                = state_name = @contact.state.present? ? @contact.state.name : "Unknown State"
         br
-        h4
-        	b
-                ' Mobile:
-            = @contact.mobile
-        h4
-        	b
-                ' Email:
-            = @contact.email
+        .col-md-4
+            h1 
+            	b = "#{@contact.full_name}"
+            h2 = uni = @contact.uni.present? ? @contact.uni.name : "Unknown Uni"
+            h2
+            	span.label.label-lg style="background-color: #{get_state_colour_hex(@contact.state)};"
+                    = state_name = @contact.state.present? ? @contact.state.name : "Unknown State"
+        .col-md-8
+            .col-md-4
+                h3 
+                    b Contact Info
+                br
+                h4
+                	b
+                        ' Mobile:
+                    = @contact.mobile
+                h4
+                	b
+                        ' Email:
+                    = @contact.email
+                h4
+                    b
+                        ' Added By:
+                    = User.find(@contact.added_by).username
+            .col-md-8
+                h3
+                    b Background Info
+                br
+                .col-md-6
+                    h4
+                        b
+                            ' High School:
+                        = @contact.high_school
+                    h4
+                        b
+                            ' Graduated:
+                        = @contact.high_school_graduation_year
+                .col-md-6
+                    h4
+                        b
+                            ' Degree:
+                        = @contact.degree
+                    h4
+                        b
+                            ' Year of Study:
+                        =  ((Time.new.year.to_i) - @contact.uni_commencement_year + 1).ordinalize if @contact.uni_commencement_year.present?
     .row
         hr
         h2 Notes

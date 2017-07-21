@@ -12,8 +12,12 @@
             	b = "#{@contact.full_name}"
             h2 = uni = @contact.uni.present? ? @contact.uni.name : "Unknown Uni"
             h2
-            	span.label.label-lg style="background-color: #{get_state_colour_hex(@contact.state)};"
-                    = state_name = @contact.state.present? ? @contact.state.name : "Unknown State"
+                - if @contact.is_brother
+                    span.label.label-lg style="background-color: #285aa3;"
+                        | Brother
+                - else
+            	    span.label.label-lg style="background-color: #{get_state_colour_hex(@contact.state)};"
+                        = state_name = @contact.state.present? ? @contact.state.name : "Unknown State"
             h3 = priority_name(@contact.rush_priority) if !@contact.is_brother
         .col-md-8
             .col-md-4

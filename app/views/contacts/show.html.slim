@@ -14,7 +14,7 @@
             h2
             	span.label.label-lg style="background-color: #{get_state_colour_hex(@contact.state)};"
                     = state_name = @contact.state.present? ? @contact.state.name : "Unknown State"
-            h3 = priority_name(@contact.rush_priority)
+            h3 = priority_name(@contact.rush_priority) if !@contact.is_brother
         .col-md-8
             .col-md-4
                 h3 

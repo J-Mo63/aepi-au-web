@@ -22,4 +22,18 @@ module ContactsHelper
   		""
   	end
   end
+
+  def priority_name(priority)
+  	if priority == 1
+  		"High Priority"
+  	elsif priority == 2
+  		"Good Candidate"
+  	elsif priority == 3
+  		"Not Sure"
+  	elsif priority == 4
+  		"Not Interested"
+  	else
+  		"No Priority"
+  	end
+  end
 end

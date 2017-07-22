@@ -1,7 +1,11 @@
 class UserPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user.admin?
+				scope.all
+			else
+				scope.none
+			end
     end
   end
 
@@ -10,19 +14,27 @@ class UserPolicy < ApplicationPolicy
     @user_object = user_object
   end
 
-  def new?
-    # if user.present?
-    #   user.admin?
-    # else
-    #   false
-    # end
+  def index?
+    if user.present?
+      user.admin?
+    else
+      false
+    end
   end
 
-  def create?
-    # if user.present?
-    #   user.admin?
-    # else
-    #   false
-    # end
+  def update?
+    if user.present?
+      user.admin?
+    else
+      false
+    end
+  end
+
+  def destroy?
+    if user.present?
+      user.admin?
+    else
+      false
+    end
   end
 end

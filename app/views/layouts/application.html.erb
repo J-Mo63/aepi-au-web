@@ -26,6 +26,9 @@
             <%= nav_link 'Forum', forums_academics_path %>
             <%= nav_link 'Jobs', jobs_path %>
             <%= nav_link 'Database', contacts_path %>
+            <% if user_signed_in? && current_user.admin  %>
+              <%= nav_link 'Users', users_path %>
+            <% end %>
           </ul>
           <% if user_signed_in? %>
             <div class="navbar-form navbar-right">

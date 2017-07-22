@@ -27,5 +27,6 @@
             = form.input :mobile
             = form.input :email
             = form.button :submit, class: "btn btn-success pull-right"
-            = form.input :is_brother
+            - if current_user.admin
+                = form.input :is_brother
         br

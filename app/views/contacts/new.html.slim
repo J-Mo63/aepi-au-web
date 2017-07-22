@@ -4,7 +4,8 @@
             h1 Add New Contact
         br
         .row
-            = link_to "Back", contacts_path, class: "btn btn-default pull-left"
+            - if current_user.admin || current_user.rush_board
+                = link_to "Back", contacts_path, class: "btn btn-default pull-left"
             br
             br
             hr
@@ -29,5 +30,6 @@
             = form.button :submit, class: "btn btn-success pull-right"
             br
             = form.label "Tick the below box if they are now part of the organisation"
-            = form.input :is_brother
+            - if current_user.admin
+                = form.input :is_brother
         br

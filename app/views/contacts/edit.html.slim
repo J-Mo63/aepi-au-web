@@ -21,8 +21,8 @@
             = form.input :high_school_graduation_year, collection: year_collection
             = form.input :degree
             = form.input :uni_commencement_year, collection: year_collection
-            = form.association :state, as: :select, collection: @states
-            - if !@contact.is_brother
+            - if !@contact.is_brother && (current_user.rush_board || current_user.admin)
+                = form.association :state, as: :select, collection: @states
                 = form.input :rush_priority, collection: { "1 - High Priority" => 1, "2 - Good Candidate" => 2, "3 - Not Sure" => 3, "4 - Not Interested" => 4}, prompt: "Select RUSH Priority"
             = form.input :mobile
             = form.input :email

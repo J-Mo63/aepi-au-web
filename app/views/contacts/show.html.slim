@@ -18,7 +18,7 @@
                 - else
             	    span.label.label-lg style="background-color: #{get_state_colour_hex(@contact.state)};"
                         = state_name = @contact.state.present? ? @contact.state.name : "Unknown State"
-            h3 = priority_name(@contact.rush_priority) if !@contact.is_brother
+            h3 = priority_name(@contact.rush_priority) if !@contact.is_brother && current_user.rush_board
         .col-md-8
             .col-md-4
                 h3 
@@ -65,13 +65,17 @@
         br
         br
         - @notes.each do |note|
-            .well.well-sm
-                - if current_user.owner_admin_for_note?(note)
-                    = button_to "Delete", note_path(note), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
-                    = link_to "Edit", edit_note_path(note), class: "btn btn-link pull-right"
-                p 
-                    b = "#{note.user.username}: "
-                    = note.body
+            - if current_user.owner_for_note?(note) || current_user.rush_board
+                .well.well-sm
+                    - if current_user.owner_admin_for_note?(note)
+                        = button_to "Delete", note_path(note), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
+                        = link_to "Edit", edit_note_path(note), class: "btn btn-link pull-right"
+                    p 
+                        b = "#{note.user.username}: "
+                        = note.body
+            - else
+                .well.well-sm
+                    i You do not have the privleges to see this note
     .row
         = simple_form_for @note, url: notes_path do |form|
             = form.hidden_field :contact_id, value: params[:id]

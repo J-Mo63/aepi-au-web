@@ -4,7 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :username, presence: true
+
   has_many :notes
+
+  def full_name
+  	"#{first_name} #{last_name}"
+  end
 
   def admin?
     return admin

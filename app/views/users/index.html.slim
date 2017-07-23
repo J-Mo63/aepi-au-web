@@ -8,19 +8,22 @@
                 thead
                     tr
                         th Username
+                        th Full Name
                         th Email
                         th Controls
                     - @users.each do |user|
                         tbody
                             tr
-                                td 
+                                td.td-fill-25
                                     h3 = user.username
-                                td 
+                                td.td-fill-25
+                                    h3 = user.full_name
+                                td.td-fill-25
                                     h3 = user.email
-                                td 
+                                td.td-fill-25
                                     = simple_form_for user, url: user_path(user), method: :put do |form|
                                         = form.input :admin
                                         = form.input :rush_board
                                         = form.button :submit, class: "btn btn-success pull-left"
-                                    = button_to "Delete", user_path(user), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
+                                    = button_to "Delete User", user_path(user), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
 

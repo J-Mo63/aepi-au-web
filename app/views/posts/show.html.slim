@@ -11,7 +11,12 @@
         br
         .row
             h2 = "#{@post.title}"
-            h5 = "posted by #{@post.creator.username} on #{@post.created_at.strftime("%d %b %Y at %l:%M%P")}"
+            h5 
+                = "posted by "
+                a data-toggle="tooltip" title="#{@post.creator.full_name}" class="popover-name"
+                    = @post.creator.username
+
+                = " on #{@post.created_at.strftime("%d %b %Y at %l:%M%P")}"
             br
             h4.non-bold = simple_format(@post.body)
         hr
@@ -25,7 +30,10 @@
                         = button_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
                         = link_to "Edit", edit_comment_path(comment), class: "btn btn-link pull-right"
                     p 
-                        b = "#{comment.creator.username}: "
+                        b 
+                            a data-toggle="tooltip" title="#{comment.creator.full_name}" class="popover-name"
+                                = comment.creator.username
+                            ' :
                         = comment.body
         .row
             = simple_form_for @comment, url: comments_path do |form|

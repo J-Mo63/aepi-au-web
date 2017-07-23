@@ -35,7 +35,8 @@
                 h4
                     b
                         ' Added By:
-                    = User.find(@contact.added_by).username
+                    a data-toggle="tooltip" title="#{User.find(@contact.added_by).full_name}" class="popover-name"
+                        = User.find(@contact.added_by).username
             .col-md-8
                 h3
                     b Background Info

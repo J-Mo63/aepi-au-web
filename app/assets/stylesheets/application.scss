@@ -87,6 +87,10 @@ ul  {
     width: 100%;
 }
 
+.bootstrap-spacing {
+    margin-bottom: 10px;
+}
+
 .blue-hover:hover {
     background-color: #2b60ad !important;
     text-decoration: none;
@@ -110,4 +114,14 @@ ul  {
 
 .popover-name {
     cursor: help;
+}
+
+.mobile-div {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .mobile-div {
+        display: block;
+    }
 }

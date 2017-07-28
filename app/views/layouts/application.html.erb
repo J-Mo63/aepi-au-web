@@ -55,7 +55,15 @@
         </div>
       <% end %>
 
-      <%= yield %>
+
+      <% if controller_name ==  "pages" %>
+        <%= yield %>
+      <% else %>
+        <div class="container">
+          <%= yield %>
+        </div>
+      <% end %>
+
     </div>
 
     <hr/>

@@ -19,8 +19,10 @@
             	    span.label.label-lg style="background-color: #{get_state_colour_hex(@contact.state)};"
                         = state_name = @contact.state.present? ? @contact.state.name : "Unknown State"
             h3 = priority_name(@contact.rush_priority) if !@contact.is_brother && current_user.rush_board
+        .mobile-div
+            hr.mobile-div
         .col-md-8
-            .col-md-4
+            .col-md-6
                 h3 
                     b Contact Info
                 br
@@ -37,28 +39,27 @@
                         ' Added By:
                     a data-toggle="tooltip" title="#{User.find(@contact.added_by).full_name}" class="popover-name"
                         = User.find(@contact.added_by).username
-            .col-md-8
+            hr.mobile-div
+            .col-md-6
                 h3
                     b Background Info
                 br
-                .col-md-6
-                    h4
-                        b
-                            ' High School:
-                        = @contact.high_school
-                    h4
-                        b
-                            ' Graduated:
-                        = @contact.high_school_graduation_year
-                .col-md-6
-                    h4
-                        b
-                            ' Degree:
-                        = @contact.degree
-                    h4
-                        b
-                            ' Year of Study:
-                        =  ((Time.new.year.to_i) - @contact.uni_commencement_year + 1).ordinalize if @contact.uni_commencement_year.present?
+                h4
+                    b
+                        ' High School:
+                    = @contact.high_school
+                h4
+                    b
+                        ' Graduated:
+                    = @contact.high_school_graduation_year
+                h4
+                    b
+                        ' Degree:
+                    = @contact.degree
+                h4
+                    b
+                        ' Year of Study:
+                    =  ((Time.new.year.to_i) - @contact.uni_commencement_year + 1).ordinalize if @contact.uni_commencement_year.present?
     .row
         hr
         h2 Notes

@@ -6,8 +6,8 @@
     .row
         
         hr
-        = link_to "Add Contact", new_contact_path, class: "btn btn-success pull-right"
-        .col-md-5
+        = link_to "Add Contact", new_contact_path, class: "btn btn-success pull-right bootstrap-spacing"
+        .col-md-5.bootstrap-spacing
             = form_tag contacts_path, method: 'get' do
                 = text_field_tag :search, params[:search], class: "form-control", placeholder: "Search contacts via name, uni or status"
         .col-md-5
@@ -16,7 +16,6 @@
                     = link_to 'All Contacts', contacts_path, class: "btn btn-default #{get_active_class_for_index}"
                     = link_to 'Brother List', contacts_path(list: "brother list"), class: "btn btn-default #{get_active_class("brother list")}"
                     = link_to 'Rush List', contacts_path(list: "rush list"), class: "btn btn-default #{get_active_class("rush list")}"
-                    = link_to 'Pledge List', "#", class: "btn btn-default"
         br
         br
         br

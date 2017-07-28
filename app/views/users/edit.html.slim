@@ -1,0 +1,15 @@
+.top-pad
+    .container
+        .row
+            h1.text-center manage your AEPi OZ profile
+        br
+        br
+        
+        = simple_form_for @user, url: user_path(@user) do |form|
+            = form.input :email
+            = form.input :username
+            = form.input :first_name
+            = form.input :last_name
+            = form.button :submit, class: "btn btn-success pull-right"
+
+        br

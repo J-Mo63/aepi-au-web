@@ -4,6 +4,10 @@ class UsersController < ApplicationController
     @users = policy_scope(User)
   end
 
+  def edit
+    @user = current_user
+  end
+
   def update
     @user = User.find(params[:id])
     authorize @user
@@ -25,7 +29,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:admin, :rush_board, :first_name, :last_name)
+      params.require(:user).permit(:admin, :rush_board, :email, :username, :first_name, :last_name)
     end
 
 end

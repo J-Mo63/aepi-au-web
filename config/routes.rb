@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     :registrations => "registrations"
   }
-  resources :users, only: [:index, :destroy, :update]
+  resources :users, only: [:index, :destroy, :update, :edit]
 
   get 'contacts/settings', to: 'contacts#settings'
   resources :contacts

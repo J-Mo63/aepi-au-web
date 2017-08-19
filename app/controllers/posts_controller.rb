@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @board = @post.board
     @comments = Comment.where(post_id: @post.id)
     @comment = Comment.new
+    @snap = Snap.new
   end
 
   def new
@@ -55,6 +56,10 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:board_id, :title, :body, :creator_id)
+    end
+
+    def snap_params
+      params.require(:snap).permit(:user_id, :comment_id)
     end
 
 end

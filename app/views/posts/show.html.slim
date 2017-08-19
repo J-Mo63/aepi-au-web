@@ -26,6 +26,11 @@
             br
             - @comments.each do |comment|
                 .well.well-sm
+                    = simple_form_for @snap, url: snaps_path do |form|
+                        = form.hidden_field :user, value: current_user
+                        = form.hidden_field :comment, value: comment
+                        = form.submit 'Give Snaps', class: 'snap-submit'
+
                     - if current_user.owner_admin?(comment)
                         = button_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
                         = link_to "Edit", edit_comment_path(comment), class: "btn btn-link pull-right"

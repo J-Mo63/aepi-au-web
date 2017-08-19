@@ -1,5 +1,4 @@
 class Contact < ApplicationRecord
-
 	belongs_to :uni, optional: true
 	belongs_to :state, optional: true
 	validates :first_name, :presence => true

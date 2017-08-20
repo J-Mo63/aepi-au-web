@@ -79,8 +79,10 @@
                 .well.well-sm
                     i You do not have the privleges to see this note
     .row
-        = simple_form_for @note, url: notes_path do |form|
-            = form.hidden_field :contact_id, value: params[:id]
-            = form.hidden_field :user_id, value: current_user.id
-            = form.input :body, class: "form-control", placeholder: "Leave a note about this person...", label: false
-        
+        - if !@contact.is_brother
+            = simple_form_for @note, url: notes_path do |form|
+                = form.hidden_field :contact_id, value: params[:id]
+                = form.hidden_field :user_id, value: current_user.id
+                = form.input :body, class: "form-control", placeholder: "Leave a note about this person...", label: false
+        - else
+            h4.text-center Notes cannot be added at this time

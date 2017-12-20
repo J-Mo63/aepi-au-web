@@ -1,24 +1,22 @@
-# README
+# AEPi Australia Site
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The AEPi Australia site provides both an informational website and a web-portal for members to access:
+* Academic Forums
+* Job Boards
+* Rush Lists
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+Simply have bundle installed and run it in the project directory:
+```
+$ bundle
+$ rake db:create
+$ rake db:migrate
+```
 
-* System dependencies
+## Running the Project
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To get the project running at localhost:3000 run:
+```
+$ rails s
+```

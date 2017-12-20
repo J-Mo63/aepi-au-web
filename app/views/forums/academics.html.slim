@@ -1,35 +1,34 @@
-.top-pad
-    .container
-        .row
-        	h1 Academics Forum
-        hr
+.container
+    .row
+    	h1 Academics Forum
+    hr
 
-        = link_to "New Post", new_post_path(board: @board), class: "btn btn-success pull-right"
-        h3 Latest Posts
-        br
-        .row
-            .list-group
-                - @posts.each do |post|
-                    a.list-group-item href="#{post_path(post.id)}"
-                    	h4
-                    		span.label.pull-right style="background-color: #{get_board_colour_hex(post.board)};" = post.board.name
-                        h4.list-group-item-heading = post.title
-                        p.list-group-item-text = truncate(post.body, :length => 170)
-            - if @posts.count == 0
-                h4.text-center no recent posts
-            - elsif @posts.count < Post.all.count
-                a href="#{posts_path}"
-                	h4.text-center view all posts
-        br
-        hr
-        - if current_user.admin?
-        		= link_to "Add Board", new_board_path, class: "btn btn-success pull-right"
-        h3 Subjects
-        br
-        .row
-        	- @boards.each do |board|
-        		.col-md-3
-					a.thumbnail.blue.blue-hover.pad-right href="#{board_path(board.id)}"
-					    .caption
-					    	h3.reduced-top-margin.white-text = board.name
-					        .white-text.no-deco = board.description
+    = link_to "New Post", new_post_path(board: @board), class: "btn btn-success pull-right"
+    h3 Latest Posts
+    br
+    .row
+        .list-group
+            - @posts.each do |post|
+                a.list-group-item href="#{post_path(post.id)}"
+                	h4
+                		span.label.pull-right style="background-color: #{get_board_colour_hex(post.board)};" = post.board.name
+                    h4.list-group-item-heading = post.title
+                    p.list-group-item-text = truncate(post.body, :length => 170)
+        - if @posts.count == 0
+            h4.text-center no recent posts
+        - elsif @posts.count < Post.all.count
+            a href="#{posts_path}"
+            	h4.text-center view all posts
+    br
+    hr
+    - if current_user.admin?
+    		= link_to "Add Board", new_board_path, class: "btn btn-success pull-right"
+    h3 Subjects
+    br
+    .row
+    	- @boards.each do |board|
+    		.col-md-3
+				a.thumbnail.blue.blue-hover.pad-right href="#{board_path(board.id)}"
+				    .caption
+				    	h3.reduced-top-margin.white-text = board.name
+				        .white-text.no-deco = board.description

@@ -11,6 +11,8 @@ class ContactsController < ApplicationController
   	else
     	@contacts = policy_scope(Contact).search(params[:search])
   	end
+
+  	@contacts = @contacts.sort_by{|c| c[:last_name]}
   end
 
   def show

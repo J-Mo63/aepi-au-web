@@ -15,7 +15,15 @@ class Contact < ApplicationRecord
 	def self.search(search)
 	  if search && search != ""
 	  	search = search.downcase
-	  	joins(:uni).joins(:state).where("lower(first_name) LIKE ? OR lower(last_name) LIKE ? OR lower(unis.name) LIKE ? OR lower(states.name) LIKE ?", "%#{search}%","%#{search}%","%#{search}%","%#{search}%")
+
+	  	result = []
+
+	  	result << where("LOWER(first_name) 	LIKE ?", "%#{search}%")
+	  	result << where("LOWER(last_name) 	LIKE ?", "%#{search}%")
+	  	result << joins(:uni).where("LOWER(unis.name) LIKE ?", "%#{search}%")
+	  	result << joins(:state).where("LOWER(states.name) 	LIKE ?", "%#{search}%")
+
+	  	result.flatten.uniq
 	  else
 	    self.all
 	  end

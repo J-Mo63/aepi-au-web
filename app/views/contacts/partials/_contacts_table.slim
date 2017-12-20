@@ -1,0 +1,14 @@
+table.table
+  	thead
+    	tr
+	    	th Name
+	    	th Uni
+	    	th Mobile
+	    	th Email
+	    	th Status
+	    	th Options
+	tbody
+		- contacts.each do |contact|
+			= render partial: "contacts/partials/contact_row", locals: {contact: contact}
+	    - if contacts.count == 0
+	        h4.text-center no contacts to display

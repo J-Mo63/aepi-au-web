@@ -1,0 +1,27 @@
+.col-sm-6.col-md-4
+    .thumbnail
+        = link_to "View", contact_path(contact), class: "btn btn-default pull-right"
+        = link_to "Edit", edit_contact_path(contact), class: "btn btn-link pull-right"
+        br
+        .caption
+            h3 = contact.full_name
+            h4 = uni = contact.uni.present? ? contact.uni.name : "Unknown Uni"
+            br
+            p
+                b
+                    ' Mobile:
+                = contact.mobile
+            p
+                b
+                    ' Email:
+                = contact.email
+            hr
+            h4 
+                b
+                    ' Status:
+                - if contact.is_brother
+                    span.label.label-lg style="background-color: #285aa3;"
+                        | Brother
+                - else
+                    span.label.label-lg style="background-color: #{get_state_colour_hex(contact.state)};"
+                        = state_name = contact.state.present? ? contact.state.name : "Unknown State"

@@ -1,0 +1,15 @@
+tr
+  td = contact.full_name
+  td = uni = contact.uni.present? ? contact.uni.name : "Unknown Uni"
+  td = contact.mobile
+  td = contact.email
+  td 
+    - if contact.is_brother
+      span.label.label-lg style="background-color: #285aa3;"
+        | Brother
+    - else
+      span.label.label-lg style="background-color: #{get_state_colour_hex(contact.state)};"
+        = state_name = contact.state.present? ? contact.state.name : "Unknown State"
+  td
+    = link_to "View", contact_path(contact), class: "btn btn-default pull-right"
+    = link_to "Edit", edit_contact_path(contact), class: "btn btn-link pull-right"

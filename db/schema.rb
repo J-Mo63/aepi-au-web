@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723025520) do
+ActiveRecord::Schema.define(version: 20171221090425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,28 @@ ActiveRecord::Schema.define(version: 20170723025520) do
     t.integer  "creator_id"
   end
 
+  create_table "reimbursements", force: :cascade do |t|
+    t.string   "title"
+    t.string   "image"
+    t.integer  "bsb"
+    t.integer  "account_number"
+    t.boolean  "is_processed"
+    t.text     "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_reimbursements_on_user_id", using: :btree
+  end
+
+  create_table "snaps", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "comment_id"
+    t.integer  "user_id"
+    t.index ["comment_id"], name: "index_snaps_on_comment_id", using: :btree
+    t.index ["user_id"], name: "index_snaps_on_user_id", using: :btree
+  end
+
   create_table "states", force: :cascade do |t|
     t.string   "name"
     t.string   "colour"
@@ -117,10 +139,21 @@ ActiveRecord::Schema.define(version: 20170723025520) do
     t.datetime "updated_at",                             null: false
     t.string   "username"
     t.boolean  "admin",                  default: false
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.string   "invited_by_type"
+    t.integer  "invited_by_id"
+    t.integer  "invitations_count",      default: 0
     t.boolean  "rush_board",             default: false
     t.string   "first_name"
     t.string   "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+    t.index ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end

@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20171221090425) do
 
   create_table "reimbursements", force: :cascade do |t|
     t.string   "title"
+    t.float    "total_value"
     t.string   "image"
     t.integer  "bsb"
     t.integer  "account_number"

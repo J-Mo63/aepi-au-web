@@ -4,7 +4,7 @@ class ReimbursementsController < ApplicationController
   # GET /reimbursements
   # GET /reimbursements.json
   def index
-    @reimbursements = Reimbursement.all
+    @reimbursements = policy_scope(Reimbursement)
   end
 
   # GET /reimbursements/1

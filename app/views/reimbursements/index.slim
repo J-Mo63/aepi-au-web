@@ -1,0 +1,18 @@
+.top-pad
+    .container
+        .row
+        	h1 Reimbursement Claims
+        = link_to "New Claim", new_reimbursement_path, class: "btn btn-success pull-right"
+        br
+        br
+        hr
+        h3 Unprocessed
+        br
+        = render partial: "reimbursements/partials/reimbursements_set", locals: {reimbursements: @reimbursements}
+        br
+        hr
+        br
+        h3 Processed
+        br
+        = render partial: "reimbursements/partials/reimbursements_set", locals: {reimbursements: @reimbursements}
+        br

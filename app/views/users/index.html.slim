@@ -22,9 +22,16 @@
                                     h3 = user.email
                                 td.td-fill-25
                                     = simple_form_for user, url: user_path(user), method: :put do |form|
-                                        = form.input :admin
-                                        = form.input :rush_board
-                                        = form.input :bank_signatory
+                                        .field
+                                            = form.label "Admin: "
+                                            = form.check_box :admin
+                                        .field
+                                            = form.label "Rush Board Member: "
+                                            = form.check_box :rush_board
+                                        .field
+                                            = form.label "Bank Signatory: "
+                                            = form.check_box :bank_signatory
+                                        br
                                         = form.button :submit, class: "btn btn-success pull-left"
                                     = button_to "Delete User", user_path(user), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
 

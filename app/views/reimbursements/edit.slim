@@ -1,0 +1,30 @@
+.top-pad
+    .container
+        .row
+            h1 Edit Reimbursement Claim
+        br
+        .row
+            = link_to "Back", :back, class: "btn btn-default pull-left"
+            = button_to "Delete Claim", reimbursement_path(@reimbursement), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
+            br
+            br
+            hr
+        br
+        
+        = simple_form_for @reimbursement, url: reimbursement_path(@reimbursement), method: :put do |form|
+            = form.hidden_field :user_id
+            = form.input :title, label: "Title", placeholder: "e.g. Supplies for BBQ"
+            = form.input :description, as: :text, label: "Description", placeholder: "e.g. Bought 3 packs of Kosher hotdogs, buns and a case of beers for midsem BBQ at the house"
+            = form.input :total_value, label: "Price", placeholder: "e.g. 46.50"
+            = form.input :image, label: "Image - Please provide a URL to a picture of the receipt", placeholder: "e.g. https://www.aepi.org/wp-content/uploads/2017/02/COFA_Color.png"
+            br
+            hr
+            h3 Payment Details
+            br
+            = form.input :account_name, label: "Your Account Name", placeholder: "e.g. Sheldon Corporationson"
+            = form.input :bsb, label: "Your BSB Number", placeholder: "e.g. 000000"
+            = form.input :account_number, label: "Your Account Number", placeholder: "e.g. 00000000"
+            br
+            = form.submit "Submit", class: "btn btn-success pull-right"
+
+        br

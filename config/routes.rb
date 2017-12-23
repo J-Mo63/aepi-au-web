@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
 	get 'forums/academics', to: 'forums#academics'
 
+	get 'reimbursements/toggle_process', to: 'reimbursements#toggle_process'
+	resources :reimbursements
+
   resources :forums, as: :forum
 
   devise_scope :user do

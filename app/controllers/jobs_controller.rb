@@ -20,8 +20,7 @@ class JobsController < ApplicationController
 
   def update
     load_job
-    build_job
-    save_job or render 'edit'
+    update_job or render 'edit'
   end
 
   def destroy
@@ -48,6 +47,12 @@ class JobsController < ApplicationController
 
 		def save_job
 			if @job.save
+				redirect_to jobs_path
+			end
+		end
+
+		def update_job
+	    if @job.update(job_params)
 				redirect_to jobs_path
 			end
 		end

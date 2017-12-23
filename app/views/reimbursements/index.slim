@@ -6,13 +6,13 @@
         br
         br
         hr
-        h3 Unprocessed
+        h3 = @unprocessed_reimbursements.count.to_s + " Unprocessed"
         br
-        = render partial: "reimbursements/partials/reimbursements_set", locals: {reimbursements: @reimbursements}
+        = render partial: "reimbursements/partials/reimbursements_set", locals: {reimbursements: @unprocessed_reimbursements}
         br
         hr
         br
-        h3 Processed
+        h3 = @processed_reimbursements.count.to_s + " Processed"
         br
-        = render partial: "reimbursements/partials/reimbursements_set", locals: {reimbursements: @reimbursements}
+        = render partial: "reimbursements/partials/reimbursements_set", locals: {reimbursements: @processed_reimbursements}
         br

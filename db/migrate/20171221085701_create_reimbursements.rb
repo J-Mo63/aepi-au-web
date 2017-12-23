@@ -4,9 +4,10 @@ class CreateReimbursements < ActiveRecord::Migration[5.0]
       t.string :title
       t.float :total_value
       t.string :image
-      t.integer :bsb
-      t.integer :account_number
-      t.boolean :is_processed
+      t.string :account_name
+      t.string :bsb
+      t.string :account_number
+      t.boolean :is_processed, default: false
       t.text :description
 
       t.timestamps

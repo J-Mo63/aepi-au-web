@@ -1,6 +1,6 @@
 .row
-    .list-group
-        - @reimbursements.each do |reimbursement|
-            = render partial: "reimbursements/partials/reimbursement_item", locals: {reimbursement:reimbursement}
-    - if @reimbursements.count == 0
+	- if reimbursements.count == 0
         h4.text-center there are no reimbursements to display
+    - else
+    	- reimbursements.each do |reimbursement|
+            = render partial: "reimbursements/partials/reimbursement_item", locals: {reimbursement:reimbursement}

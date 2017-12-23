@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :reimbursements
   resources :notes
   resources :states
   resources :unis
@@ -16,6 +15,9 @@ Rails.application.routes.draw do
   resources :contacts
 
 	get 'forums/academics', to: 'forums#academics'
+
+	get 'reimbursements/toggle_process', to: 'reimbursements#toggle_process'
+	resources :reimbursements
 
   resources :forums, as: :forum
 

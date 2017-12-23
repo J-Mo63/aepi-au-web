@@ -29,4 +29,8 @@ class User < ApplicationRecord
   def owner_for_note?(content)
     return (content.user_id == id)
   end
+
+  def owner?(content)
+    return (content.user_id == id)
+  end
 end

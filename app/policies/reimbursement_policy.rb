@@ -3,7 +3,11 @@ class ReimbursementPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.all
+    	if @user.bank_signatory
+    		scope.all
+    	else
+      	scope.where(user_id: @user.id)
+      end
     end
   end
 
@@ -21,10 +25,14 @@ class ReimbursementPolicy < ApplicationPolicy
 	end
 
 	def edit?
-		true
+		@user.owner?(@reimbursement)
 	end
 
 	def update?
-		true
+		@user.owner?(@reimbursement)
+	end
+
+	def toggle_process?
+		@user.bank_signatory
 	end
 end

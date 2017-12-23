@@ -1,74 +1,71 @@
 class ReimbursementsController < ApplicationController
-  before_action :set_reimbursement, only: [:show, :edit, :update, :destroy]
 
-  # GET /reimbursements
-  # GET /reimbursements.json
   def index
-    @reimbursements = policy_scope(Reimbursement)
+    load_reimbursements
   end
 
-  # GET /reimbursements/1
-  # GET /reimbursements/1.json
-  def show
-  end
-
-  # GET /reimbursements/new
   def new
-    @reimbursement = Reimbursement.new
+    build_reimbursement
   end
 
-  # GET /reimbursements/1/edit
   def edit
+  	load_reimbursement
   end
 
-  # POST /reimbursements
-  # POST /reimbursements.json
   def create
-    @reimbursement = Reimbursement.new(reimbursement_params)
-
-    respond_to do |format|
-      if @reimbursement.save
-        format.html { redirect_to @reimbursement, notice: 'Reimbursement was successfully created.' }
-        format.json { render :show, status: :created, location: @reimbursement }
-      else
-        format.html { render :new }
-        format.json { render json: @reimbursement.errors, status: :unprocessable_entity }
-      end
-    end
+    build_reimbursement
+    save_reimbursement or render 'new'
   end
 
-  # PATCH/PUT /reimbursements/1
-  # PATCH/PUT /reimbursements/1.json
   def update
-    respond_to do |format|
-      if @reimbursement.update(reimbursement_params)
-        format.html { redirect_to @reimbursement, notice: 'Reimbursement was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reimbursement }
-      else
-        format.html { render :edit }
-        format.json { render json: @reimbursement.errors, status: :unprocessable_entity }
-      end
-    end
+    load_reimbursement
+    update_reimbursement or render 'edit'
   end
 
-  # DELETE /reimbursements/1
-  # DELETE /reimbursements/1.json
   def destroy
+    load_reimbursement
     @reimbursement.destroy
-    respond_to do |format|
-      format.html { redirect_to reimbursements_url, notice: 'Reimbursement was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to reimbursements_path
+  end
+
+  def toggle_process
+    load_reimbursement
+    new_state = !@reimbursement.is_processed
+    @reimbursement.update(is_processed: new_state)
+    redirect_to reimbursements_path
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reimbursement
-      @reimbursement = Reimbursement.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reimbursement_params
-      params.require(:reimbursement).permit(:string, :string, :integer, :integer, :is_processed, :string)
+  	def load_reimbursements
+  		@unprocessed_reimbursements = policy_scope(Reimbursement).order(created_at: :desc).where(is_processed: false)
+  		@processed_reimbursements = policy_scope(Reimbursement).order(created_at: :desc).where(is_processed: true)
+  	end
+
+  	def load_reimbursement
+  		@reimbursement = Reimbursement.find(params[:id])
+    	authorize @reimbursement
+  	end
+
+  	def build_reimbursement
+			@reimbursement = Reimbursement.new(reimbursement_params)
+      authorize @reimbursement
+		end
+
+		def save_reimbursement
+			if @reimbursement.save
+				redirect_to reimbursements_path
+			end
+		end
+
+		def update_reimbursement
+	    if @reimbursement.update(reimbursement_params)
+				redirect_to reimbursements_path
+			end
+		end
+
+		def reimbursement_params
+    	reimbursement_params = params[:reimbursement]
+    	reimbursement_params ? reimbursement_params.permit(:user_id, :title, :description, :bsb, :account_number, :account_name, :is_processed, :image, :total_value) : {}
     end
 end

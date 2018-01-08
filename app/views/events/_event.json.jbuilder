@@ -1,2 +1,0 @@
-json.extract! event, :id, :title, :itemised_budget, :runsheet, :start_time, :budget_total, :is_approved, :feedback, :expected_turnout, :user, :created_at, :updated_at
-json.url event_url(event, format: :json)

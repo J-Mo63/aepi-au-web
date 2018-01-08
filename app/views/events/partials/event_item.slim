@@ -1,0 +1,45 @@
+.well
+	.row
+		.col-md-6
+			h4
+				= event.title
+		/ 	h5
+		/ 		= "Submitted "
+		/ 		= reimbursement.created_at.strftime("%d %b %Y at %l:%M%P")
+		/ 		= " by " + reimbursement.user.full_name
+		/ 	p = reimbursement.description
+		/ 	br
+		/ 	h4
+		/ 		- if reimbursement.is_processed
+		/ 			span.label.label-success Processed
+		/ 		- else
+		/ 			span.label.label-danger Unprocessed
+		/ .col-md-4
+		/ 	= link_to "View Receipt", reimbursement.image
+		/ 	h3 = "$#{sprintf('%.2f', reimbursement.total_value)}"
+		/ 	br
+		/ 	p
+		/ 		b 
+		/ 			' Acct Name:
+		/ 		= reimbursement.account_name
+		/ 		br
+		/ 		b 
+		/ 			' BSB:
+		/ 		= reimbursement.bsb
+		/ 		br
+		/ 		b 
+		/ 			' Acct Num:
+		/ 		= reimbursement.account_number
+		/ .col-md-2
+		/ 	- if current_user.bank_signatory
+		/ 		= link_to reimbursements_toggle_process_path(id: reimbursement.id)
+		/ 			- if reimbursement.is_processed
+		/ 				.btn.btn-warning.pull-right Unprocess Claim
+		/ 			- else
+		/ 				.btn.btn-primary.pull-right Process Claim
+		/ 		br
+		/ 		br
+		/ 	- if current_user.owner?(reimbursement)
+		/ 		= link_to edit_reimbursement_path(reimbursement.id)
+		/ 			.btn.btn-default.pull-right Edit Claim
+			

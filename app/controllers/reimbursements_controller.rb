@@ -1,4 +1,5 @@
 class ReimbursementsController < ApplicationController
+	before_action :authenticate_user!
 
   def index
     load_reimbursements

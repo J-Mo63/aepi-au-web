@@ -1,0 +1,17 @@
+.top-pad
+    .container
+        .row
+        	h1 Events
+        = link_to "New Event", new_event_path, class: "btn btn-success pull-right"
+        br
+        br
+        hr
+        h3 = @unapproved_events.count.to_s + " Unapproved Events"
+        br
+        .row
+            - if @events.count == 0
+                h4.text-center there are no events to display
+            - else
+                - @events.each do |event|
+                    = render partial: "events/partials/event_item", locals: {event: event}
+        br

@@ -6,12 +6,18 @@
         br
         br
         hr
-        h3 = @unapproved_events.count.to_s + " Unapproved Events"
+        = link_to "#{pluralize(@unapproved_events.count.to_s, "Unapproved Event")} for Review", "#", class: "btn btn-default pull-left"
+        br
         br
         .row
-            - if @events.count == 0
+            - if @event_groups.count == 0
                 h4.text-center there are no events to display
             - else
-                - @events.each do |event|
-                    = render partial: "events/partials/event_item", locals: {event: event}
+                - @event_groups.each do |event_group|
+                    h4.text-center = event_group[0].strftime("%d %b %Y")
+                    - event_group[1].each do |event|
+                        = render partial: "events/partials/event_item", locals: {event: event}
+                    .row
+                        .col-md-4
+                        hr.col-md-4
         br

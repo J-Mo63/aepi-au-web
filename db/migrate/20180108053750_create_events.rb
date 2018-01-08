@@ -6,7 +6,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.text :runsheet
       t.datetime :start_time
       t.float :budget_total
-      t.boolean :is_approved
+      t.boolean :is_approved, :default => false
       t.string :feedback
       t.integer :expected_turnout
       t.integer :user_id

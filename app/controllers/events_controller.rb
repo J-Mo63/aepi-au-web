@@ -39,8 +39,8 @@ class EventsController < ApplicationController
   private
 
   	def load_events
-  		@events = policy_scope(Event).order(created_at: :desc)
-  		@unapproved_events = @events.where(is_approved: false)
+  		@event_groups = policy_scope(Event).order(created_at: :desc).group_by_day(time_zone: "Sydney") { |e| e.start_time }
+  		@unapproved_events = policy_scope(Event).order(created_at: :desc).where(is_approved: false)
   	end
 
   	def load_event

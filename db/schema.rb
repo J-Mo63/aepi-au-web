@@ -59,12 +59,12 @@ ActiveRecord::Schema.define(version: 20180108053750) do
     t.text     "runsheet"
     t.datetime "start_time"
     t.float    "budget_total"
-    t.boolean  "is_approved"
+    t.boolean  "is_approved",      default: false
     t.string   "feedback"
     t.integer  "expected_turnout"
     t.integer  "user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "forums", force: :cascade do |t|

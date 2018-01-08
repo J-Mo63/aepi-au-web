@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 	before_action :authenticate_user!
-	
+
   def index
     load_events
   end
@@ -67,6 +67,6 @@ class EventsController < ApplicationController
 
 		def event_params
     	event_params = params[:event]
-    	event_params ? reimbursement_params.permit(:title, :itemised_budget, :runsheet, :start_time, :budget_total, :is_approved, :feedback, :expected_turnout, :user) : {}
+    	event_params ? event_params.permit(:title, :itemised_budget, :runsheet, :start_time, :budget_total, :is_approved, :feedback, :expected_turnout, :user_id) : {}
     end
 end

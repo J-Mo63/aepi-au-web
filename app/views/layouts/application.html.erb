@@ -27,6 +27,7 @@
             <%= nav_link 'Jobs', jobs_path %>
             <%= nav_link 'Database', contacts_path %>
             <%= nav_link 'Receipts', reimbursements_path %>
+            <%= nav_link 'Events', events_path %>
             <% if user_signed_in? && current_user.admin  %>
               <%= nav_link 'Users', users_path %>
             <% end %>

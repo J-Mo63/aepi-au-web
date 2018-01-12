@@ -16,6 +16,10 @@ class EventPolicy < ApplicationPolicy
 		@event = event
 	end
 
+	def show?
+		true
+	end
+
 	def new?
 		true
 	end
@@ -32,7 +36,11 @@ class EventPolicy < ApplicationPolicy
 		@user.owner?(@event)
 	end
 
-	def toggle_approved?
+	def destroy?
+		@user.owner?(@event) || @user.admin?
+	end
+
+	def toggle_approve?
 		@user.bank_signatory || @user.admin?
 	end
 end

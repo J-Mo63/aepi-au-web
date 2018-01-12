@@ -1,16 +1,17 @@
 .top-pad
     .container
         .row
-            h1 Submit New Event Proposal
+            h1 Edit Event Proposal
         br
         .row
             = link_to "Back", :back, class: "btn btn-default pull-left"
+            = button_to "Delete Event", event_path(@event), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"
             br
             br
             hr
         br
         
-        = simple_form_for @event, url: events_path do |form|
+        = simple_form_for @event, url: event_path(@event), method: :put do |form|
             = form.hidden_field :user_id, value: current_user.id
             .row
                 .col-md-6

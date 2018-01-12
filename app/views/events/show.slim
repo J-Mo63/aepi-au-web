@@ -1,0 +1,52 @@
+.top-pad
+    .container
+        .row
+            h1 = @event.title
+            
+            hr
+            
+            = link_to "Back", events_path, class: "btn btn-default pull-left"
+            - if current_user.owner?(@event)
+                = link_to "Edit", edit_event_path(@event), class: "btn btn-default pull-right"
+        br
+
+        .row
+            .col-md-3
+            .col-md-6
+                .well
+                    h4 
+                        - if @event.is_approved
+                            span.label.label-success
+                                = "Approved"
+                        - else
+                            span.label.label-warning
+                                = "Unapproved"
+                    h3.text-center Details
+                    p
+                        b
+                            ' Start Time:
+                        = @event.start_time.strftime("%d %b %Y at %l:%M%P")
+                    p
+                        b
+                            ' Location:
+                        = @event.location
+                    p
+                        b
+                            ' Expected Turnout:
+                        = @event.expected_turnout
+                    p
+                        b
+                            ' Budget Total:
+                        = "$#{@event.budget_total}"
+                    hr
+                    h3.text-center Runsheet
+                    p = simple_format(@event.runsheet)
+                    hr
+                    h3.text-center Itemised Budget
+                    p = simple_format(@event.itemised_budget)
+                - if current_user.bank_signatory
+                = link_to events_toggle_approve_path(id: @event.id)
+                    - if @event.is_approved
+                        .btn.btn-warning.pull-right Unapprove Event
+                    - else
+                        .btn.btn-primary.pull-right Approve Event

@@ -5,6 +5,10 @@ class EventsController < ApplicationController
     load_events
   end
 
+  def show
+    load_event
+  end
+
   def new
     build_event
   end
@@ -29,11 +33,11 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
-  def toggle_process
+  def toggle_approve
     load_event
-    new_state = !@event.is_processed
+    new_state = !@event.is_approved
     @event.update(is_approved: new_state)
-    redirect_to events_path
+    redirect_to event_path(@event)
   end
 
   private
@@ -61,12 +65,12 @@ class EventsController < ApplicationController
 
 		def update_event
 	    if @event.update(event_params)
-				redirect_to events_path
+				redirect_to event_path(@event)
 			end
 		end
 
 		def event_params
     	event_params = params[:event]
-    	event_params ? event_params.permit(:title, :itemised_budget, :runsheet, :start_time, :budget_total, :is_approved, :feedback, :expected_turnout, :user_id) : {}
+    	event_params ? event_params.permit(:title, :itemised_budget, :runsheet, :start_time, :budget_total, :is_approved, :feedback, :expected_turnout, :user_id, :location) : {}
     end
 end

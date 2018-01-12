@@ -6,7 +6,7 @@
     .row
         
         hr
-        = link_to "Add Contact", new_contact_path, class: "btn btn-success pull-right bootstrap-spacing"
+        = link_to "Add Contact", new_contact_path, class: "btn btn-success pull-right"
         .col-md-5.bootstrap-spacing
             = form_tag contacts_path, method: 'get' do
                 = text_field_tag :search, params[:search], class: "form-control", placeholder: "Search contacts via name, uni or status"
@@ -24,5 +24,8 @@
                 h4 = "Showing search results for \"#{params[:search]}\""
         - else
     br
-    = render partial: "contacts/partials/contacts_deck", locals: {contacts: @contacts}
+    .hidden-xs
+        = render partial: "contacts/partials/contacts_table", locals: {contacts: @contacts}
+    .visible-xs
+        = render partial: "contacts/partials/contacts_deck", locals: {contacts: @contacts}
 

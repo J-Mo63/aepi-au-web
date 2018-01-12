@@ -1,0 +1,22 @@
+.top-pad
+    .container
+        .row
+        	h1 Events
+        = link_to "New Event", new_event_path, class: "btn btn-success pull-right"
+        br
+        br
+        hr
+        /= link_to "#{pluralize(@unapproved_events.count.to_s, "Unapproved Event")} for Review", "#", class: "btn btn-default pull-left"
+        br
+        .row
+            - if @event_groups.count == 0
+                h4.text-center there are no events to display
+            - else
+                - @event_groups.each do |event_group|
+                    h4.text-center = event_group[0].strftime("%d %b %Y")
+                    - event_group[1].each do |event|
+                        = render partial: "events/partials/event_item", locals: {event: event}
+                    .row
+                        .col-md-4
+                        hr.col-md-4
+        br

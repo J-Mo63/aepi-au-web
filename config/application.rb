@@ -14,5 +14,8 @@ module Forums
 
     # add custom validators path
 		config.autoload_paths += %W["#{config.root}/app/validators/"]
+
+		config.time_zone = 'Sydney'
+ 		config.active_record.default_timezone = :local
   end
 end

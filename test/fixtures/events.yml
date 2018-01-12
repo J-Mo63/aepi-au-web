@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  itemised_budget: MyText
+  runsheet: MyText
+  start_time: 2018-01-08 16:37:51
+  budget_total: 1.5
+  is_approved: false
+  feedback: MyString
+  expected_turnout: 1
+  user: 1
+
+two:
+  title: MyString
+  itemised_budget: MyText
+  runsheet: MyText
+  start_time: 2018-01-08 16:37:51
+  budget_total: 1.5
+  is_approved: false
+  feedback: MyString
+  expected_turnout: 1
+  user: 1

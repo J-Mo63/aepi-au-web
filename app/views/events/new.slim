@@ -1,0 +1,29 @@
+.top-pad
+    .container
+        .row
+            h1 Submit New Event Proposal
+        br
+        .row
+            = link_to "Back", :back, class: "btn btn-default pull-left"
+            br
+            br
+            hr
+        br
+        
+        = simple_form_for @event, url: events_path do |form|
+            = form.hidden_field :user_id, value: current_user.id
+            .row
+                .col-md-6
+                    = form.input :title, label: "Title", placeholder: "e.g. Friday Night Kiddush Club"
+                .col-md-4
+                    = form.input :start_time, label: "Start Time"
+                .col-md-2
+                    = form.input :expected_turnout, label: "Expected Turnout", placeholder: "e.g. 10"
+            = form.input :location, label: "Location", placeholder: "e.g. The AEPi House"
+            = form.input :runsheet, as: :text, label: "Runsheet", placeholder: "e.g. 5:00pm: Event start      5:30pm: Drinking commences      6:00pm: Drunken disorder ensues      7:00pm: Intoxicated cleanup effort"
+            = form.input :itemised_budget, label: "Itemised Budget", placeholder: "e.g. 2x Corona Case ($70) + 1x Kiddush Wine ($8.50)"
+            = form.input :budget_total, label: "Budget Total", placeholder: "e.g. 78.50"
+            br
+            = form.submit "Submit", class: "btn btn-success pull-right"
+
+        br

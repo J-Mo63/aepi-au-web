@@ -38,6 +38,8 @@ gem 'simple_form'
 gem 'devise'
 gem 'pundit'
 
+gem 'groupdate'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do

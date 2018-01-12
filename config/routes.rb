@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 	get 'reimbursements/toggle_process', to: 'reimbursements#toggle_process'
 	resources :reimbursements
 
+	get 'events/toggle_approve', to: 'events#toggle_approve'
+	resources :events
+
   resources :forums, as: :forum
 
   devise_scope :user do

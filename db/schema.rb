@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171223052137) do
+ActiveRecord::Schema.define(version: 20180112063209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,21 @@ ActiveRecord::Schema.define(version: 20171223052137) do
     t.index ["added_by"], name: "index_contacts_on_added_by", using: :btree
     t.index ["state_id"], name: "index_contacts_on_state_id", using: :btree
     t.index ["uni_id"], name: "index_contacts_on_uni_id", using: :btree
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.text     "itemised_budget"
+    t.text     "runsheet"
+    t.datetime "start_time"
+    t.float    "budget_total"
+    t.boolean  "is_approved",      default: false
+    t.string   "feedback"
+    t.integer  "expected_turnout"
+    t.integer  "user_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "location"
   end
 
   create_table "forums", force: :cascade do |t|

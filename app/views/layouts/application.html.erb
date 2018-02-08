@@ -8,6 +8,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- HubSpot Embed Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4287527.js"></script>
+    <!-- Insta frame -->
+    <script src="//lightwidget.com/widgets/lightwidget.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
     <!-- Favicon -->
     <%= favicon_link_tag 'favicon.ico' %>
   </head>
@@ -27,13 +32,17 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <%= nav_link 'Home', root_path %>
-            <%= nav_link 'Forum', forums_academics_path %>
-            <%= nav_link 'Jobs', jobs_path %>
-            <%= nav_link 'Database', contacts_path %>
-            <%= nav_link 'Receipts', reimbursements_path %>
-            <%= nav_link 'Events', events_path %>
-            <% if user_signed_in? && current_user.admin  %>
-              <%= nav_link 'Users', users_path %>
+            <%= nav_link 'About Us', about_path %>
+            <%= nav_link 'Contact', contact_path %>
+            <% if user_signed_in?  %>
+              <%= nav_link 'Forum', forums_academics_path %>
+              <%= nav_link 'Jobs', jobs_path %>
+              <%= nav_link 'Database', contacts_path %>
+              <%= nav_link 'Receipts', reimbursements_path %>
+              <%= nav_link 'Events', events_path %>
+              <% if current_user.admin  %>
+                <%= nav_link 'Users', users_path %>
+              <% end %>
             <% end %>
           </ul>
           <% if user_signed_in? %>

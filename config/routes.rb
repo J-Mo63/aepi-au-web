@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   }
   resources :users, only: [:index, :destroy, :update, :edit]
 
+  get 'about', to: 'pages#about_us'
+  get 'contact', to: 'pages#contact'
+
   get 'contacts/settings', to: 'contacts#settings'
   resources :contacts
 

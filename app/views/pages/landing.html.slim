@@ -11,11 +11,29 @@
 .container
   .row
     .col-md-8
-      h2 Heading
-      p Some text
-      p
-        a.btn.btn-default href="#" role="button"  Continue reading
-      hr
+      - if user_signed_in? && current_user.admin
+        = link_to "New Post", new_blog_post_path, class: "btn btn-success pull-right"
+        br
+        br
+        br
+      - @blog_posts.limit(3).each do |blog_post|
+        = content_tag(:div, nil, class: "post-img", style: "background-image: url(#{blog_post.image})")
+        h2 = blog_post.title
+        p = simple_format(blog_post.body)
+        - if user_signed_in? && current_user.admin
+          - if blog_post.is_published
+            span.label.label-success
+              = "Published"
+          - else
+            span.label.label-warning
+              = "Not Published"
+          br
+          = link_to "Edit", edit_blog_post_path(blog_post.id), class: "btn btn-default pull-right"
+          br
+          br
+        hr
+      .text-center
+        = link_to "View Older Posts", blog_posts_path, class: "btn btn-default"
     .col-md-4
       h2 Social Media
       h3 Facebook

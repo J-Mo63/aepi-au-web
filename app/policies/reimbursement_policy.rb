@@ -28,6 +28,10 @@ class ReimbursementPolicy < ApplicationPolicy
 		@user.owner?(@reimbursement)
 	end
 
+	def destroy?
+		@user.admin?
+	end
+
 	def update?
 		@user.owner?(@reimbursement)
 	end

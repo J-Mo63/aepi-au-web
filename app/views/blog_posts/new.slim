@@ -1,0 +1,22 @@
+.container
+    .top-pad
+        .top-pad
+            .container
+                .row
+                    h1 Create New Post
+                br
+                .row
+                    = link_to "Back", :back, class: "btn btn-default pull-left"
+                    br
+                    br
+                    hr
+                br
+                
+                = simple_form_for @blog_post, url: blog_posts_path do |form|
+                    = form.input :title
+                    = form.input :body, as: :text
+                    = form.input :image, label: "Image - Please provide a URL to a picture of the receipt", placeholder: "e.g. https://www.aepi.org/wp-content/uploads/2017/02/COFA_Color.png"
+                    = form.input :is_published
+                    = form.submit "Submit", class: "btn btn-success pull-right"
+
+                br

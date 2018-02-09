@@ -1,0 +1,29 @@
+.jumbotron.hero-img
+  .container.text-bubble
+    .row
+      .col-md-12
+        h1 Our Blog
+        p Get the latest updates from the ΩZA Colony
+
+.container
+    - @blog_posts.each do |blog_post|
+        = content_tag(:div, nil, class: "post-img", style: "background-image: url(#{blog_post.image})")
+        h2 = blog_post.title
+        p = simple_format(blog_post.body)
+        - if user_signed_in? && current_user.admin
+          - if blog_post.is_published
+            span.label.label-success
+              = "Published"
+          - else
+            span.label.label-warning
+              = "Not Published"
+          br
+          = link_to "Edit", edit_blog_post_path(blog_post.id), class: "btn btn-default pull-right"
+          br
+          br
+    - if @blog_posts.count < 1
+        h3.text-center
+            i No blog posts to display
+        br
+    hr
+    br

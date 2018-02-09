@@ -33,6 +33,7 @@
           <ul class="nav navbar-nav">
             <%= nav_link 'Home', root_path %>
             <%= nav_link 'About Us', about_path %>
+            <%= nav_link 'Blog', blog_posts_path %>
             <%= nav_link 'Contact', contact_path %>
             <% if user_signed_in?  %>
               <%= nav_link 'Forum', forums_academics_path %>
@@ -71,7 +72,7 @@
       <% end %>
 
 
-      <% if controller_name ==  "pages" %>
+      <% if controller_name ==  "pages" ||  controller_name ==  "blog_posts" %>
         <%= yield %>
       <% else %>
         <div class="container">

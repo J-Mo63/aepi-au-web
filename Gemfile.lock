@@ -141,6 +141,7 @@ GEM
       ffi (>= 0.5.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rinku (2.0.4)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -207,6 +208,7 @@ DEPENDENCIES
   pundit
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_12factor
+  rinku
   sass-rails (~> 5.0)
   simple_form
   slim
@@ -218,4 +220,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.15.4
+   1.16.1

@@ -3,10 +3,10 @@ class EventPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-    	if @user.bank_signatory || @user.owner?(@event) || @user.admin?
+    	if @user.bank_signatory || @user.admin?
     		scope.all
     	else
-      	scope.where(is_approved: true)
+      	scope.where(user_id: @user.id)
       end
     end
   end

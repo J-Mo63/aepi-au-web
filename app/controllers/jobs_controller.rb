@@ -47,6 +47,11 @@ class JobsController < ApplicationController
 
 		def save_job
 			if @job.save
+
+		    User.find_each do |user|
+		    	JobMailer.delay.job_created(user, @job)
+		    end
+
 				redirect_to jobs_path
 			end
 		end

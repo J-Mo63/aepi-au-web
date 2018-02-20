@@ -22,3 +22,7 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Private stuff
+.env
+Procfile

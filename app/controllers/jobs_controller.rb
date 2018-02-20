@@ -47,11 +47,7 @@ class JobsController < ApplicationController
 
 		def save_job
 			if @job.save
-
-		    User.find_each do |user|
-		    	JobMailer.delay.job_created(user, @job)
-		    end
-
+				send_notifications(@job)
 				redirect_to jobs_path
 			end
 		end
@@ -65,5 +61,11 @@ class JobsController < ApplicationController
     def job_params
     	job_params = params[:job]
     	job_params ? job_params.permit(:title, :description, :is_expired) : {}
+    end
+
+    def send_notifications(job)
+    	User.find_each do |user|
+		    JobMailer.delay.job_created(user, job)
+		  end
     end
 end

@@ -4,7 +4,7 @@ class JobMailer < ApplicationMailer
     @user = user
     @job = job
     @url  = jobs_url
-    @title = 'A new job has been opened on aepi.org.au'
+    @title = "New job open: #{@job.title}"
 
     mail(to: @user.email, subject: @title)
   end

@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h2><%= @title %></h2>
-    <p>Hi <%= @user.full_name %>,</p>
-    <p>A new job "<%= @job.title %>" has been posted to the site.</p>
-    <p>To check it out, just click <%= link_to "here", @url %>.</p>
-    <br>
-    <i>Although this is an automatic message, I still urge you to have a great day!</i>
-  </body>
-</html>
+<h2><%= @title %></h2>
+<p>Hi <%= @user.full_name %>,</p>
+<p>A new job "<%= @job.title %>" has been posted to the site.</p>
+<p>To check it out, just click <%= link_to "here", @url %>.</p>

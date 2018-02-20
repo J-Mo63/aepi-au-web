@@ -3,11 +3,36 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
-      /* Email styles need to be inline */
+      .content {
+        background: #e3e3e3;
+      }
+      .container {
+        margin: 1%;
+      }
+      .head {
+        background: #285aa3;  
+        height: 70px;
+        width: 100%;
+      }
+      .logo {
+        height: 80%;
+        margin: 5px;
+      }
     </style>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="content">
+      <div class="head">
+        <img class="logo" src="http://www.aepi.org.au/assets/AEPi%20Syd%20Logo%20Mini-c76e98a34edf29cea7f5613e2b0c7980d2ebdb6811484ff4a3ae8d552ae9dc2e.png">
+      </div>
+      <div class="container">
+        <%= yield %>
+        <br>
+      </div>
+    </div>
+    <div class="container">
+        <i>Although this is an automatic message, I still urge you to have a great day!</i>
+    </div>
   </body>
 </html>

@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   has_many :notes
 
+  after_create :send_welcome_email
+
   def full_name
   	"#{first_name} #{last_name}"
   end
@@ -32,5 +34,10 @@ class User < ApplicationRecord
 
   def owner?(content)
     return (content.user_id == id)
+  end
+
+  def send_welcome_email
+    # UserMailer.delay.user_created(self)
+    UserMailer.user_created(self).deliver_now
   end
 end

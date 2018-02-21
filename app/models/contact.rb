@@ -7,6 +7,9 @@ class Contact < ApplicationRecord
 	validates :email, :email => true
 	has_many :notes
 	has_one :user, foreign_key: 'added_by'
+
+	after_create :inform_rush_new_contact_email
+	after_update :inform_rush_updated_contact_email
 	
 	def full_name
 		"#{first_name} #{last_name}"
@@ -28,4 +31,18 @@ class Contact < ApplicationRecord
 	    self.all
 	  end
 	end
+
+	def inform_rush_new_contact_email
+    users = User.where(rush_board: true)
+    users.each do |user|
+	    ContactMailer.delay.contact_created(user, self)
+	  end
+  end
+
+  def inform_rush_updated_contact_email
+    users = User.where(rush_board: true)
+    users.each do |user|
+	    ContactMailer.delay.contact_updated(user, self)
+	  end
+  end
 end

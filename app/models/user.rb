@@ -39,14 +39,13 @@ class User < ApplicationRecord
 
   def send_welcome_email
     # UserMailer.delay.user_created(self)
-    UserMailer.user_created(self).deliver_now
+    UserMailer.delay.user_created(self)
   end
 
   def inform_admin_email
     users = User.where(admin: true)
     users.each do |user|
-	    # JobMailer.delay.job_created(user, self)
-	    UserMailer.user_created_admin_notification(user, self).deliver_now
+	    UserMailer.delay.user_created_admin_notification(user, self)
 	  end
   end
 end

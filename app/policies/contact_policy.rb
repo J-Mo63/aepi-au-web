@@ -28,6 +28,10 @@ class ContactPolicy < ApplicationPolicy
 		true
 	end
 
+	def destroy?
+		@user.admin?
+	end
+
 	def settings?
 		user.admin?
 	end

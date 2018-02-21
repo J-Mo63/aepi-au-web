@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :notes
 
   after_create :send_welcome_email
+  after_create :inform_admin_email
 
   def full_name
   	"#{first_name} #{last_name}"
@@ -39,5 +40,13 @@ class User < ApplicationRecord
   def send_welcome_email
     # UserMailer.delay.user_created(self)
     UserMailer.user_created(self).deliver_now
+  end
+
+  def inform_admin_email
+    users = User.where(admin: true)
+    users.each do |user|
+	    # JobMailer.delay.job_created(user, self)
+	    UserMailer.user_created_admin_notification(user, self).deliver_now
+	  end
   end
 end

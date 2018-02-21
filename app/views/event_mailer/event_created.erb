@@ -1,0 +1,5 @@
+<h2><%= @title %></h2>
+<p>Hi <%= @user.full_name %>,</p>
+<p>A new event proposal has been submitted by <%= @requesting_user.full_name %> for "<%= @event.title %>"</p>
+<b>The budgeted amount being requested is $<%= sprintf('%.2f', @event.budget_total) %></b>
+<p>To check it out, just click <%= link_to "here", @url %>.</p>

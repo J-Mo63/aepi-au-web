@@ -11,22 +11,22 @@ class JobPolicy < ApplicationPolicy
   end
 
   def new?
-    user.admin?
+    true
   end
 
   def create?
-    user.admin?
+    true
   end
 
   def edit?
-    user.admin?
+    user.admin? || user.owner?(@job)
   end
 
   def update?
-    user.admin?
+    user.admin? || user.owner?(@job)
   end
 
   def destroy?
-    user.admin?
+    user.admin? || user.owner?(@job)
   end
 end

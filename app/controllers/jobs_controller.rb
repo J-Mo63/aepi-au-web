@@ -59,6 +59,6 @@ class JobsController < ApplicationController
 
     def job_params
     	job_params = params[:job]
-    	job_params ? job_params.permit(:title, :description, :is_expired) : {}
+    	job_params ? job_params.permit(:title, :description, :is_expired, :user_id) : {}
     end
 end

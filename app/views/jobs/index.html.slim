@@ -3,8 +3,7 @@
         h1 Jobs
         
         hr
-        - if current_user.admin?
-            = link_to "Add Job", new_job_path, class: "btn btn-success pull-right"
+        = link_to "Add Job", new_job_path, class: "btn btn-success pull-right"
     br
 
     .row
@@ -20,7 +19,7 @@
                         = job.title
                 .panel-body 
                     = job.description
-                    - if current_user.admin?
+                    - if current_user.admin? || current_user.owner?(job)
                         br
                         br
                         = link_to "Edit", edit_job_path(job), class: "btn btn-default pull-right"

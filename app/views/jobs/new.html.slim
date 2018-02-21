@@ -11,6 +11,7 @@
         br
         
         = simple_form_for @job, url: jobs_path do |form|
+            = form.hidden_field :user_id, value: current_user.id
             = form.input :title
             = form.input :description
             = form.button :submit, class: "btn btn-success pull-right"

@@ -1,4 +1,6 @@
 class Job < ApplicationRecord
+	belongs_to :user
+
 	after_create :send_notifications
 
 	def send_notifications

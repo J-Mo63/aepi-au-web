@@ -1,0 +1,5 @@
+<h2><%= @title %></h2>
+<p>Hi <%= @user.full_name %>,</p>
+<p>A new reimbursement request has been lodged by <%= @requesting_user.full_name %> for "<%= @reimbursement.title %>"</p>
+<b>The amount being requested is $<%= sprintf('%.2f', @reimbursement.total_value) %></b>
+<p>To check it out, just click <%= link_to "here", @url %>.</p>

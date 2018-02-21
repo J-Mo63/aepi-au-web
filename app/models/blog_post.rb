@@ -10,5 +10,7 @@ class BlogPost < ApplicationRecord
     users = User.all
     users.each do |user|
 	    BlogPostMailer.delay.blog_post_created(user, self)
+	  end
   end
+
 end

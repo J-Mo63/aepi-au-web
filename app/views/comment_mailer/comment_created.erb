@@ -1,0 +1,4 @@
+<h2><%= @title %></h2>
+<p>Hi <%= @user.full_name %>,</p>
+<p>A new comment by <%= @comment.creator.full_name %> has been added to <%= @post.creator.full_name %>'s post "<%= @post.title %>".</p>
+<p>To view and/or reply to the thread, just click <%= link_to "here", @url %>.</p>

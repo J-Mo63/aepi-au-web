@@ -16,7 +16,15 @@
             = form.input :title, label: "Title", placeholder: "e.g. Supplies for BBQ"
             = form.input :description, as: :text, label: "Description", placeholder: "e.g. Bought 3 packs of Kosher hotdogs, buns and a case of beers for midsem BBQ at the house"
             = form.input :total_value, label: "Price", placeholder: "e.g. 46.50"
-            = form.input :image, label: "Image - Please provide a URL to a picture of the receipt", placeholder: "e.g. https://www.aepi.org/wp-content/uploads/2017/02/COFA_Color.png"
+            .row
+                .col-md-7
+                    = form.input :image, label: "Image - Please provide a URL to a picture of the receipt", placeholder: "e.g. https://www.aepi.org/wp-content/uploads/2017/02/COFA_Color.png"
+                .col-md-5
+                    p
+                        b We suggest you upload your image to Imgur and submit the link
+                    = link_to "https://imgur.com", target: :_blank
+                        = image_tag("imgur_icon", class: "imgur-icon")
+                        span  Click here to open Imgur in a new tab
             br
             hr
             h3 Payment Details

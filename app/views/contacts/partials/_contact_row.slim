@@ -11,5 +11,7 @@ tr
       span.label.label-lg style="background-color: #{get_state_colour_hex(contact.state)};"
         = state_name = contact.state.present? ? contact.state.name : "Unknown State"
   td
+    span.badge = contact.notes.count
+  td
     = link_to "View", contact_path(contact), class: "btn btn-default pull-right"
     = link_to "Edit", edit_contact_path(contact), class: "btn btn-link pull-right"

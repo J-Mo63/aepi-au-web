@@ -6,7 +6,7 @@
 			h5
 				= "Submitted "
 				= reimbursement.created_at.strftime("%d %b %Y at %l:%M%P")
-				= " by " + reimbursement.user.full_name
+				= " by " + reimbursement.user.full_name if reimbursement.user
 			p = reimbursement.description
 			br
 			h4

@@ -16,7 +16,7 @@
 					span.label.label-danger Unprocessed
 		.col-md-4
 			= link_to "View Receipt", reimbursement.image
-			h3 = "$#{sprintf('%.2f', reimbursement.total_value)}"
+			h3 = "$#{sprintf('%.2f', reimbursement.total_value)}" if reimbursement.total_value
 			br
 			p
 				b 

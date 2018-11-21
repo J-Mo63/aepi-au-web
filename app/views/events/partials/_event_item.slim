@@ -2,7 +2,10 @@ h4.text-center
 	= link_to event_path(event)
 		= "#{event.start_time.strftime("%l:%M%P")} - #{event.title}"
 	'
-	- if event.is_approved
+	- if event.start_time.past?
+		span.label.label-default
+			= "Passed Event"
+	- elsif event.is_approved
 		span.label.label-success
 			= "Approved"
 	- else

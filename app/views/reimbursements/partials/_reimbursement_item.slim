@@ -39,7 +39,7 @@
 						.btn.btn-primary.pull-right Process Claim
 				br
 				br
-			- if current_user.owner?(reimbursement)
+			- if current_user.owner_admin?(reimbursement)
 				= link_to edit_reimbursement_path(reimbursement.id)
 					.btn.btn-default.pull-right Edit Claim
 			

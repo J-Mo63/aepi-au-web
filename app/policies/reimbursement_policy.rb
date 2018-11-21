@@ -25,7 +25,7 @@ class ReimbursementPolicy < ApplicationPolicy
 	end
 
 	def edit?
-		@user.owner?(@reimbursement)
+		@user.owner_admin?(@reimbursement)
 	end
 
 	def destroy?
